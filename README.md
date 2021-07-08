@@ -31,7 +31,7 @@ Utilisez la meme commande pour mettre à jour le fichier si vous avez ajouté/mo
 Si vous ajoutez une nouvelle langue, n'oubliez pas de mettre à jour config/services.yaml en ajoutant les 2 première lettre de la langue à `app.locales` comme ceci : `app.locales: [en, fr, es]`
 ### Entités
 * Article
-* Comment **(TODO)**
+* Comment
 * Tag
 * Category
 * User
