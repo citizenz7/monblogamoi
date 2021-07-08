@@ -1,18 +1,20 @@
 # MONBLOGAMOI
 `MONBLOGAMOI` est un projet de blog entièrement basé sur le framework PHP Symfony 5.
 
+## EN DEVELOPPEMENT - Ne pas utiliser en PRODUCTION !
+
 ## Template
 Entièrement basé sur Bootsrap 5 "from scratch"
 
-## prerequisite 
+## prérequis
 * PHP 7.4.3=+
 * MySQL
 * Symfony CLI (5)
 * Composer
 * Mail server (registration, contact, ...)
 
-## features 
-### Languages and frameworks
+## Fonctionnalités
+### Languages et frameworks
 * PHP 7.4.3
 * MySQL (MariaDB)
 * HTML / CSS
@@ -20,7 +22,7 @@ Entièrement basé sur Bootsrap 5 "from scratch"
 * Bootstrap (v5)
 * Google fonts (Poppins)
 * Font awesome 5
-### Translation
+### Traduction
 * Multilingual
 * TransalatorInterface : EN, FR, ES
 Vos pouvez ajouter ou mettre à jour les fichiers de langues avec (par exemple pour l'espagnol): `symfony console translation:update --force es`
