@@ -1,6 +1,13 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
 
+    globals:
+        site_name: MonBlogAMoi
+        site_url: monblogamoi.com
+        site_utl_full: https://wwwmonblogamoi.com
+        site_email: contact@monblogamoi.com
+        site_author: citizenz
+
 when@test:
     twig:
         strict_variables: true

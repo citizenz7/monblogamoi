@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ site_name }} : Bienvenue !{% endblock %}
+
+{% block body %}
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for article in articles %}
+    <div class="col">
+        <div class="card h-100">
+            <img src="{{ asset('uploads/images/articles/' ~ article.image) }}" class="card-img-top" alt="{{ article.title }}">
+            <div class="card-body">
+                <p>
+                    {% for cat in article.category %}
+                        <a href="{{ path('category_show', {'slug': cat.slug}) }}" class="text-decoration-none">
+                            <span class="badge bg-secondary">{{ cat.title }}</span>
+                        </a>
+                    {% endfor %}
+                <br>
+                    {% for tag in article.tag %}
+                        <a href="{{ path('tag_show', {'slug': tag.slug}) }}" class="text-decoration-none">
+                            <span class="badge border rounded text-dark" style="font-size: 10px;">{{ tag.title }}</span>
+                        </a>
+                    {% endfor %}
+                </p>
+                <h5 class="card-title blog-title fw-bold">
+                    <a href="{{ path('article_show', {'slug': article.slug}) }}" class="text-decoration-none text-dark">{{ article.title }}</a>
+                </h5>
+                <p class="card-text blog-body bg-light p-2 fst-italic">
+                    {{ article.presentation }}
+                </p>
+                <p class="border-top border-bottom">
+                    <small class="text-muted">Publié le {{ article.createdAt|format_datetime('full', 'short', locale='fr') }}, par {{ article.author.prenom }} {{ article.author.nom }}</small>
+                </p>
+
+
+            </div>
+            <div class="card-footer">
+                <div class="d-grid gap-2">
+                    <a href="{{ path('article_show', {'slug': article.slug}) }}" class="btn btn-primary"><i class="fas fa-angle-double-right"></i> Lire la suite <i class="fas fa-angle-double-left"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="pagination justify-content-center px-2 mt-4">
+    {{ knp_pagination_render(articles) }}
+</div>
+
+{% endblock %}

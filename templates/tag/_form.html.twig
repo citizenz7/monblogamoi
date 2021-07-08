@@ -1,0 +1,6 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn btn-sm btn-success">{{ button_label|default('Créer') }}</button> 
+    <button class="btn btn-sm btn-secondary" type="reset">Annuler</button> 
+    <a class="btn btn-sm btn-primary" href="{{ path('tag_index') }}">Liste des Tags</a>
+{{ form_end(form) }}
