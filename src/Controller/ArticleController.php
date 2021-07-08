@@ -3,39 +3,56 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Comment;
 use App\Form\ArticleType;
-use App\Repository\ArticleRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Form\CommentType;
+use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Mailer\MailerInterface;
 
-/**
- * @Route("/article")
- */
 class ArticleController extends AbstractController
 {
     /**
-     * @Route("/", name="article_index", methods={"GET"})
+     * @Route("/admin/article", name="article_index", methods={"GET"})
+     * @param Request $request
+     * @param PaginatorInterface $paginator
+     * @return Response
      */
-    public function index(ArticleRepository $articleRepository): Response
+    public function index(Request $request, PaginatorInterface $paginator): Response
     {
+        $em = $this->getDoctrine()->getManager();
+        $dql = "SELECT p FROM App:Article p ORDER BY p.created_at DESC";
+        $donnees = $em->createQuery($dql);
+
+        $articles = $paginator->paginate(
+            $donnees, // Requête contenant les données à paginer (ici nos articles)
+            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+            5 // Nombre de résultats par page
+        );
+
         return $this->render('article/index.html.twig', [
-            'articles' => $articleRepository->findAll(),
+            //'articles' => $articleRepository->findAll(),
+            'articles' => $articles
         ]);
     }
 
     /**
-     * @Route("/new", name="article_new", methods={"GET","POST"})
+     * @Route("/admin/article/new", name="article_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
         $article = new Article();
+
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             // Upload image
             $uploadedFile = $form['image']->getData();
 
@@ -52,6 +69,8 @@ class ArticleController extends AbstractController
                 $article->setImage($newFilename);
             }
 
+            $entityManager = $this->getDoctrine()->getManager();
+
             // Article creation date and time
             $article->setCreatedAt(new \DateTimeImmutable());
 
@@ -60,24 +79,26 @@ class ArticleController extends AbstractController
 
             // Set views number to 1
             $article->setViews('1');
-                        
-            $entityManager = $this->getDoctrine()->getManager();
+
             $entityManager->persist($article);
             $entityManager->flush();
 
-            return $this->redirectToRoute('article_index', [], Response::HTTP_SEE_OTHER);
+            $this->addFlash('success', 'L\'article a été créé avec succès.');
+            return $this->redirectToRoute('article_index');
         }
 
-        return $this->renderForm('article/new.html.twig', [
+        return $this->render('article/new.html.twig', [
             'article' => $article,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/{slug}", name="article_show", methods={"GET"})
+     * @Route("/article/{slug}", name="article_show", methods={"GET","POST"})
+     * @param Article $article
+     * @return Response
      */
-    public function show(Article $article): Response
+    public function show(Article $article, Request $request, EntityManagerInterface $manager, MailerInterface $mailer): Response
     {
         // Set +1 view for each visit
         $read = $article->getViews() +1;
@@ -87,13 +108,47 @@ class ArticleController extends AbstractController
         $entityManager->persist($article);
         $entityManager->flush();
 
+        // Comments
+        $comment = new Comment;
+        $commentForm = $this->createForm(CommentType::class, $comment);
+        $commentForm->handleRequest($request);
+
+        // Form
+        if($commentForm->isSubmitted() && $commentForm->isValid()) {
+            $comment->setCreatedAt(new \DateTimeImmutable());
+            $comment->setArticle($article);
+
+            // Fetch parentid content
+            $parentid = $commentForm->get("parentid")->getData();
+
+            $em = $this->getDoctrine()->getManager();
+
+            // Fetch corresponding comment
+            if ($parentid != null) {
+                $parent = $em->getRepository(Comment::class)->find(($parentid));
+            }
+
+            // Define parent
+            $comment->setParent($parent ?? null);
+
+            $em->persist($comment);
+            $em->flush();
+
+            $this->addFlash('success', 'Merci pour votre commentaire.');
+            return $this->redirectToRoute('article_show', ['slug' => $article->getSlug()]);
+        }
+
         return $this->render('article/show.html.twig', [
             'article' => $article,
+            'commentForm' => $commentForm->createView()
         ]);
     }
 
     /**
-     * @Route("/{slug}/edit", name="article_edit", methods={"GET","POST"})
+     * @Route("/admin/article/{slug}/edit", name="article_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Article $article
+     * @return Response
      */
     public function edit(Request $request, Article $article): Response
     {
@@ -106,8 +161,6 @@ class ArticleController extends AbstractController
 
             if ($uploadedFile) {
                 $image = $article->getImage();
-
-                // Delete "old" image if exists on disk
                 if($image) {
                     $nomImage = $this->getParameter("articles_images_directory") . '/' . $image;
                     if(file_exists($nomImage)) {
@@ -132,17 +185,18 @@ class ArticleController extends AbstractController
 
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('article_index', [], Response::HTTP_SEE_OTHER);
+            $this->addFlash('edited', 'Le message a été modifié avec succès.');
+            return $this->redirectToRoute('article_index');
         }
 
-        return $this->renderForm('article/edit.html.twig', [
+        return $this->render('article/edit.html.twig', [
             'article' => $article,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/{slug}/delimage", name="article_delete_image", methods={"GET"})
+     * @Route("/admin/article/{slug}/delimage", name="article_delete_image", methods={"GET"})
      */
     public function deleteImage(Request $request, Article $article): Response
     {
@@ -165,12 +219,16 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}", name="article_delete", methods={"POST"})
+     * @Route("/admin/article/{slug}", name="article_delete", methods={"POST"})
+     * @param Request $request
+     * @param Article $article
+     * @return Response
      */
     public function delete(Request $request, Article $article): Response
     {
-        // Delete image on disk when deleting article
+        // Delete image
         $image = $article->getImage();
+
         if($image) {
             $nomImage = $this->getParameter("articles_images_directory") . '/' . $image;
             if(file_exists($nomImage)) {
@@ -184,6 +242,7 @@ class ArticleController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('article_index', [], Response::HTTP_SEE_OTHER);
+        $this->addFlash('deleted', 'L\'article a été supprimé avec succès.');
+        return $this->redirectToRoute('article_index');
     }
 }

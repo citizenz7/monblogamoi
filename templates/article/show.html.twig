@@ -3,44 +3,108 @@
 {% block title %}Article{% endblock %}
 
 {% block body %}
-    <h1>Article</h1>
+<div class="row">
+    <div class="col">
+        <h1>{{ article.title }}</h1>
+        <p>
+            {{ article.presentation }}
+        </p>
+        <p>
+            <img src="{{ asset('uploads/images/articles/') ~ article.image }}" class="img-fluid float-start me-3 mt-2"
+                style="max-width: 450px; width: 100%;" alt="{{ article.title }}">
+            {{ article.content|raw }}
+        </p>
+        <p class="bg-light rounded p-2">
+            <i class="fas fa-calendar-alt"></i> {{ article.createdAt|format_datetime('medium', 'short', locale='fr') }}
+            {% if article.updatedAt %}
+                &nbsp;|&nbsp;<i class="fas fa-undo"></i> {{ article.updatedAt|format_datetime('medium', 'short', locale='fr') }}
+            {% endif %}
+            &nbsp;|&nbsp;<i class="fas fa-user-tie"></i> {{ article.author.prenom }} {{ article.author.nom }} 
+        </p>
+    </div>
+</div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ article.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ article.title }}</td>
-            </tr>
-            <tr>
-                <th>Presentation</th>
-                <td>{{ article.presentation }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ article.content }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td>{{ article.image }}</td>
-            </tr>
-            <tr>
-                <th>Created_at</th>
-                <td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Updated_at</th>
-                <td>{{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+<!-- Commentaires -->
+<div class="row">
+    <h2>Liste des commentaires ({{ article.comments|length }})</h2>
 
-    <a href="{{ path('article_index') }}">back to list</a>
+    <!-- Comments -->
+    {% for comment in article.comments %}
 
-    <a href="{{ path('article_edit', {'slug': article.slug}) }}">edit</a>
+        {% if comment.parent == null %}
+                <div class="px-3 pt-3">
+                    <h5>
+                        {{ comment.nickname }}
+                        <a href="#reply-comment" data-reply data-id={{ comment.id }} class="reply">
+                            <i class="fas fa-reply"></i>
+                        </a>
+                    </h5>
+                    <time datetime="{{ comment.createdAt|format_datetime('medium', 'short') }}">
+                        {{ comment.createdAt|format_datetime('medium', 'short') }}
+                    </time>
+                    <p>
+                        {{ comment.content|raw }}
+                    </p>
+                </div>
 
-    {{ include('article/_delete_form.html.twig') }}
+            {# show reply #}
+            {% for reply in comment.replies %}
+                <div class="px-3 pt-3 comment-reply">
+                    <h5>
+                        {{ reply.nickname }}
+                    </h5>
+                    <div>
+                        <time datetime="{{ reply.createdAt|format_datetime('medium', 'short', locale='fr') }}">
+                            {{ reply.createdAt|format_datetime('medium', 'short', locale='fr') }}
+                        </time>
+                    </div>
+                    <p>
+                        {{ reply.content|raw }}
+                    </p>
+                </div>
+            {% endfor %}
+
+        {% endif %}
+        
+    {% endfor %}
+
+</div>
+
+<div class="row mt-5">
+    <div class="col">
+        <h2>Ajouter un commentaire</h2>
+        {{ form_start(commentForm) }}
+        {{ form_row(commentForm.nickname) }}
+        {{ form_row(commentForm.content) }}
+        <table class="mb-3">
+            <tr>
+                <td width="2%">
+                    {{ form_row(commentForm.rgpd, {'label': false}) }}
+                </td>
+                <td class="small">
+                    J'accepte que mes informations soient stockées en base de données. J'ai bien noté qu'en aucun cas ces données ne seront cédées à des tiers.
+                </td>
+            </tr>
+        </table>
+        <div class="mt-2">
+            <button class="btn btn-sm btn-success">Envoyer le message</button>
+            <button class="btn btn-sm btn-secondary" type="reset">Annuler</button>
+        </div>
+        {{ form_end(commentForm) }}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        window.onload = () => {
+            // Listener event on each Reply button
+            document.querySelectorAll("[data-reply]").forEach(element => {
+                element.addEventListener("click", function () {
+                    document.querySelector("#comment_parentid").value = this.dataset.id;
+                });
+            });
+        }
+    </script>
 {% endblock %}

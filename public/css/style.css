@@ -19,3 +19,8 @@ footer a {
     color: #444;
 }
 
+.comment-reply {
+    margin-left: 30px;
+    padding-left:15px;
+    border-left: 0.3rem solid #32a1ce;
+}

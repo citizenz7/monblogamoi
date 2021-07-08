@@ -29,8 +29,12 @@
                 <p class="card-text blog-body bg-light p-2 fst-italic">
                     {{ article.presentation }}
                 </p>
-                <p class="border-top border-bottom">
-                    <small class="text-muted">Publié le {{ article.createdAt|format_datetime('full', 'short', locale='fr') }}, par {{ article.author.prenom }} {{ article.author.nom }}</small>
+                <p class="border-top border-bottom text-center">
+                    <small class="text-muted">
+                        <i class="fas fa-calendar-alt"></i> {{ article.createdAt|format_datetime('medium', 'short', locale='fr') }} | 
+                        <i class="fas fa-user-tie"></i> {{ article.author.prenom }} {{ article.author.nom }} | 
+                        <i class="fas fa-comment"></i> {{ article.comments|length }}
+                    </small>
                 </p>
 
 
