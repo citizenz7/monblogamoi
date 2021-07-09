@@ -51,7 +51,7 @@ class ArticleRepository extends ServiceEntityRepository
             //->setParameter('val', $value)
             //->andWhere('a.is_active = true')
             ->orderBy('a.views', 'DESC')
-            ->setMaxResults(5)
+            ->setMaxResults(3)
             ->select('a.title', 'a.slug', 'a.created_at', 'a.image', 'a.views')
             ->getQuery()
             ->getResult()

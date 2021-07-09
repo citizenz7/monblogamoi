@@ -27,7 +27,7 @@ class CommentRepository extends ServiceEntityRepository
             ->join('c.article', 'b')
             ->orderBy('c.id', 'DESC')
             ->select('c.nickname', 'b.slug', 'c.id', 'c.content', 'c.created_at')
-            ->setMaxResults(5)
+            ->setMaxResults(3)
             ->getQuery()
             ->getResult()
         ;

@@ -19,7 +19,7 @@
         {{ form_row(registrationForm.nom) }}
         <div class="d-flex justify-content-center">
             <p>
-                <a href="#" class="text-decoration-none">Accepter nos CGU</a>
+                <a href="{{ path('cgu') }}" class="text-decoration-none">Accepter nos CGU</a>
                 {{ form_row(registrationForm.agreeTerms) }}
             </p>
         </div>
