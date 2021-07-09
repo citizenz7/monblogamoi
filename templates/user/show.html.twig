@@ -3,7 +3,7 @@
 {% block title %}User{% endblock %}
 
 {% block body %}
-    <h1>User</h1>
+    <h2>Profil de {{ user.prenom }} {{ user.nom }}</h2>
 
     <table class="table">
         <tbody>
@@ -17,15 +17,18 @@
             </tr>
             <tr>
                 <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>
+                    {#{ user.roles ? user.roles|json_encode : '' }#}
+                    {% if user.roles|json_encode == '["ROLE_USER"]' %}
+                        <span class="text-primary fw-bold">Utilisateur</span>
+                    {% else %}
+                        <span class="text-danger fw-bold">Admin</span>
+                    {% endif %}
+                </td>
             </tr>
             <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
-                <th>IsVerified</th>
-                <td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
+                <th>Compte vérifié</th>
+                <td>{{ user.isVerified ? 'Oui' : 'Non' }}</td>
             </tr>
             <tr>
                 <th>Nom</th>
@@ -37,18 +40,23 @@
             </tr>
             <tr>
                 <th>Avatar</th>
-                <td>{{ user.avatar }}</td>
+                <td><img src="{{ asset('uploads/images/users/' ~ user.avatar) }}" alt="{{ user.prenom }} {{ user.nom }}" class="img-fluid" style="max-width: 100px; width: 100%;"></td>
             </tr>
             <tr>
-                <th>Created_at</th>
-                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Enregistré le</th>
+                <td>{{ user.createdAt|format_datetime('medium', 'short', locale='fr') }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('user_index') }}">back to list</a>
+    <div class="d-flex justify-content-between align-items-center mt-5">
+        <span>
+            <a class="btn btn-success" href="{{ path('user_edit', {'id': user.id}) }}">Modifier le profil</a>
+            <button type="reset" class="btn btn-secondary">Annuler</button>
+        </span>
+        <span>
+            {{ include('user/_delete_form.html.twig') }}
+        </span>
+    </div>
 
-    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
-
-    {{ include('user/_delete_form.html.twig') }}
 {% endblock %}

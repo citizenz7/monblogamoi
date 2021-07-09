@@ -7,6 +7,8 @@ twig:
         site_utl_full: https://wwwmonblogamoi.com
         site_email: contact@monblogamoi.com
         site_author: citizenz
+        site_version: 0.1.3
+        site_slogan: Cassii montis illius celsi praetermeans funditur in Parthenium mare lorem ipsum dolor equal sin omnis terra.
 
 when@test:
     twig:

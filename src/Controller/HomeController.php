@@ -16,25 +16,24 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(Request $request, PaginatorInterface $paginator): Response
+    public function index(Request $request): Response
     {
-        $data_articles = $this->getDoctrine()->getRepository(Article::class)->findBy([],['id' => 'desc']);
-        $articles = $paginator->paginate(
-            $data_articles,
-            $request->query->getInt('page', 1),
-            3
-        );
+        $articleUne = $this->getDoctrine()->getRepository(Article::class)->findBy([],['created_at' => 'desc'], 1, 0);
+
+        $articles = $this->getDoctrine()->getRepository(Article::class)->findBy([],['created_at' => 'desc'], 4, 1);
 
         $categories = $this->getDoctrine()->getRepository(Category::class)->findBy([],['title' => 'desc']);
         $tags = $this->getDoctrine()->getRepository(Tag::class)->findBy([],['title' => 'desc']);
         
         return $this->render('home/index.html.twig', [
             'articles' => $articles,
+            'articleUne' => $articleUne,
             'categories' => $categories,
             'tags' => $tags,
             'current_menu' => 'Accueil',
         ]);
     }
+
 
     /**
      * @Route("/apropos", name="apropos")

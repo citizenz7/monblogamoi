@@ -1,4 +1,6 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <button class="btn btn-sm btn-success">{{ button_label|default('Enregistrer') }}</button> 
+    <button class="btn btn-sm btn-secondary" type="reset">Annuler</button> 
+    <a class="btn btn-sm btn-primary" href="{{ path('user_index') }}">Retour à la liste des utilisateurs</a>
 {{ form_end(form) }}

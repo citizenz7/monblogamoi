@@ -19,7 +19,6 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
-
     // Find/search articles by title
     public function findArticlesByName(string $query)
     {

@@ -19,6 +19,32 @@ class CategoryRepository extends ServiceEntityRepository
         parent::__construct($registry, Category::class);
     }
 
+    public function sidebarCategories(): array
+    {
+        return $this->createQueryBuilder('cat')
+            //->andWhere('a.exampleField = :val')
+            //->setParameter('val', $value)
+            ->orderBy('cat.title', 'ASC')
+            ->select('cat.id', 'cat.title', 'cat.slug')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function sidebarCategoriesAll(): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT p
+            FROM App\Entity\Category p
+            ORDER BY p.title ASC'
+        );
+
+        // returns an array of Product objects
+        return $query->getResult();
+    }
+    
     // /**
     //  * @return Category[] Returns an array of Category objects
     //  */

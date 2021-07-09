@@ -1,0 +1,27 @@
+<h5 class="border-bottom">Articles les + lus</h5>
+<div class="mb-4">
+    {% for a in articles %}
+    <div class="clearfix small my-3">
+        <img src="{{ asset('uploads/images/articles/' ~ a.image) }}" alt="{{ a.title }}" class="img-fluid float-start me-2" style="max-width:90px; width:100%;">
+        <a href="{{ path('article_show', {'slug': a.slug}) }}" class="text-decoration-none">{{ a.title|slice(0,25) }}...</a>
+        <br>
+        <div clas="d-flex justify-content-between align-items-center">
+            <span>
+                <time datetime="{{ a.created_at|format_datetime('medium', 'short') }}" class="small">{{ a.created_at|format_datetime('medium', 'short') }}</time>
+            </span>
+            <span class="small badge bg-primary rounded-pill">{{ a.views }}</span>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<h5 class="border-bottom">Commentaires</h5>
+<div>
+    {% for c in lastComments %}
+        <div class="clearfix small my-3">
+            <i class="fas fa-comment-dots"></i>  
+            <a href="{{ path('article_show', { 'slug': c.slug }) }}#comments" class="small">{{ c.content|slice(0,50) }}...</a>
+            <span class="small">, par {{ c.nickname }}, le {{ c.created_at|format_datetime('short', 'none', locale='fr') }}</span>
+        </div>
+    {% endfor %}
+</div>

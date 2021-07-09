@@ -17,7 +17,7 @@ use Symfony\Component\Mailer\MailerInterface;
 class ArticleController extends AbstractController
 {
     /**
-     * @Route("/admin/article", name="article_index", methods={"GET"})
+     * @Route("/article", name="article_index", methods={"GET"})
      * @param Request $request
      * @param PaginatorInterface $paginator
      * @return Response
@@ -31,10 +31,35 @@ class ArticleController extends AbstractController
         $articles = $paginator->paginate(
             $donnees, // Requête contenant les données à paginer (ici nos articles)
             $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
-            5 // Nombre de résultats par page
+            8 // Nombre de résultats par page
         );
 
         return $this->render('article/index.html.twig', [
+            //'articles' => $articleRepository->findAll(),
+            'articles' => $articles,
+            'current_menu' => 'Blog',
+        ]);
+    }
+
+    /**
+     * @Route("/admin/article", name="article_admin_index", methods={"GET"})
+     * @param Request $request
+     * @param PaginatorInterface $paginator
+     * @return Response
+     */
+    public function indexAdmin(Request $request, PaginatorInterface $paginator): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+        $dql = "SELECT p FROM App:Article p ORDER BY p.created_at DESC";
+        $donnees = $em->createQuery($dql);
+
+        $articles = $paginator->paginate(
+            $donnees, // Requête contenant les données à paginer (ici nos articles)
+            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+            5 // Nombre de résultats par page
+        );
+
+        return $this->render('article/index.admin.html.twig', [
             //'articles' => $articleRepository->findAll(),
             'articles' => $articles
         ]);
@@ -186,7 +211,7 @@ class ArticleController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
 
             $this->addFlash('edited', 'Le message a été modifié avec succès.');
-            return $this->redirectToRoute('article_index');
+            return $this->redirectToRoute('article_admin_index');
         }
 
         return $this->render('article/edit.html.twig', [

@@ -4,7 +4,67 @@
 
 {% block body %}
 
-<div class="row row-cols-1 row-cols-md-3 g-4">
+<div class="d-flex justify-content-between align-items-center mb-4 pt-1 border-top border-bottom">
+    <h3>Les derniers articles</h3>
+    <span class="fw-bold">
+        <a href="{{ path('article_index') }}" class="text-decoration-none">
+            Tous les articles &#8594;
+        </a>
+    </span>
+</div>
+
+{% for article in articleUne %}
+    <div class="card mb-3">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{{ asset('uploads/images/articles/' ~ article.image) }}" class="img-fluid rounded-start" alt="{{ article.title }}">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <p>
+                        {% for cat in article.category %}
+                            <a href="{{ path('category_show', {'slug': cat.slug}) }}" class="text-decoration-none font-monospace text-dark me-1">
+                                {{ cat.title }}
+                            </a>
+                        {% endfor %}
+                    <br>
+                        {% for tag in article.tag %}
+                            <a href="{{ path('tag_show', {'slug': tag.slug}) }}" class="text-decoration-none text-dark">
+                                <span style="font-size:0.7rem;">{{ tag.title }}</span>
+                            </a>
+                        {% endfor %}
+                    </p>
+                    <h4 class="card-title fw-bold">
+                        <a href="{{ path('article_show', {'slug': article.slug}) }}" class="text-decoration-none text-dark">
+                            {{ article.title }}
+                        </a>
+                    </h4>
+                    <p class="card-text fst-italic">
+                        {{ article.presentation }}
+                    </p>
+                    <p class="card-text ">
+                        {{ article.content|slice(0,200)|raw }}... 
+                    </p>
+                    <p class="card-text d-flex justify-content-between align-items-center">
+                        <small class="text-muted">
+                            <i class="fas fa-calendar-alt"></i>
+                            {{ article.createdAt|format_datetime('medium', 'short', locale='fr') }} |
+                            <i class="fas fa-user-tie"></i> {{ article.author.prenom }} {{ article.author.nom }}
+                            {% if article.comments|length >= 1 %}
+                                | <i class="fas fa-comment"></i> {{ article.comments|length }}
+                            {% endif %}
+                        </small>
+                        <a href="{{ path('article_show', {'slug': article.slug}) }}" class="text-decoration-none">
+                            <span>Lire la suite &#8594;</span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+<div class="row row-cols-1 row-cols-md-4 g-4">
     {% for article in articles %}
     <div class="col">
         <div class="card h-100">
@@ -12,45 +72,40 @@
             <div class="card-body">
                 <p>
                     {% for cat in article.category %}
-                        <a href="{{ path('category_show', {'slug': cat.slug}) }}" class="text-decoration-none">
-                            <span class="badge bg-secondary">{{ cat.title }}</span>
+                        <a href="{{ path('category_show', {'slug': cat.slug}) }}" class="text-decoration-none font-monospace text-dark me-1">
+                            {{ cat.title }}
                         </a>
                     {% endfor %}
                 <br>
                     {% for tag in article.tag %}
-                        <a href="{{ path('tag_show', {'slug': tag.slug}) }}" class="text-decoration-none">
-                            <span class="badge border rounded text-dark" style="font-size: 10px;">{{ tag.title }}</span>
+                        <a href="{{ path('tag_show', {'slug': tag.slug}) }}" class="text-decoration-none text-dark">
+                            <span style="font-size:0.7rem;">{{ tag.title }}</span>
                         </a>
                     {% endfor %}
                 </p>
-                <h5 class="card-title blog-title fw-bold">
+                <h6 class="card-title">
                     <a href="{{ path('article_show', {'slug': article.slug}) }}" class="text-decoration-none text-dark">{{ article.title }}</a>
-                </h5>
-                <p class="card-text blog-body bg-light p-2 fst-italic">
+                </h6>
+                <p class="card-text fst-italic small">
                     {{ article.presentation }}
                 </p>
-                <p class="border-top border-bottom text-center">
-                    <small class="text-muted">
-                        <i class="fas fa-calendar-alt"></i> {{ article.createdAt|format_datetime('medium', 'short', locale='fr') }} | 
-                        <i class="fas fa-user-tie"></i> {{ article.author.prenom }} {{ article.author.nom }} | 
-                        <i class="fas fa-comment"></i> {{ article.comments|length }}
-                    </small>
+                <p class="text-end">
+                    <a href="{{ path('article_show', {'slug': article.slug}) }}" class="text-decoration-none small">
+                        <span>Lire la suite &#8594;</span>
+                    </a>
                 </p>
-
-
             </div>
-            <div class="card-footer">
-                <div class="d-grid gap-2">
-                    <a href="{{ path('article_show', {'slug': article.slug}) }}" class="btn btn-primary"><i class="fas fa-angle-double-right"></i> Lire la suite <i class="fas fa-angle-double-left"></i></a>
-                </div>
+            <div class="card-footer text-center" style="font-size:12px;">
+                <i class="fas fa-calendar-alt"></i> {{ article.createdAt|format_datetime('medium', 'short', locale='fr') }} | 
+                <i class="fas fa-user-tie"></i> {{ article.author.prenom }} {{ article.author.nom }}
+                {% if article.comments|length >= 1 %}
+                    | <i class="fas fa-comment"></i> {{ article.comments|length }}
+                {% endif %}
+            </small>
             </div>
         </div>
     </div>
     {% endfor %}
-</div>
-
-<div class="pagination justify-content-center px-2 mt-4">
-    {{ knp_pagination_render(articles) }}
 </div>
 
 {% endblock %}
