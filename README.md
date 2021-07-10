@@ -2,7 +2,7 @@
 `MONBLOGAMOI` est un projet de blog entièrement basé sur le framework PHP Symfony 5.
 
 ## EN DEVELOPPEMENT - Ne pas utiliser en PRODUCTION !
-Version 0.1.3
+Version 0.1.6
 
 ## Template
 Entièrement basé sur Bootsrap 5 "from scratch"
@@ -24,7 +24,7 @@ Entièrement basé sur Bootsrap 5 "from scratch"
 * Google fonts (Poppins)
 * Font awesome 5
 ### Traduction
-* Multilingual
+* Multilingual **(TODO)**
 * TransalatorInterface : EN, FR, ES
 Vos pouvez ajouter ou mettre à jour les fichiers de langues avec (par exemple pour l'espagnol): `symfony console translation:update --force es`
 Votre fichier se trouve dans /translations. Vous devez terminer la traduction à la main.
