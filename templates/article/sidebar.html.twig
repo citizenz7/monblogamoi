@@ -3,7 +3,7 @@
     {% for a in articles %}
     <div class="clearfix small my-3">
         <img src="{{ asset('uploads/images/articles/' ~ a.image) }}" alt="{{ a.title }}"
-            class="img-fluid float-start me-2" style="max-width:90px; width:100%;">
+            class="img-fluid float-start article-image me-2">
         <a href="{{ path('article_show', {'slug': a.slug}) }}"
             class="text-decoration-none">{{ a.title|slice(0,25) }}...</a>
         <br>

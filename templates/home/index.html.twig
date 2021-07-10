@@ -4,8 +4,8 @@
 
 {% block body %}
 
-<div class="d-flex justify-content-between align-items-center mb-4 pt-1 border-top border-bottom">
-    <h3>Les derniers articles</h3>
+<div class="d-flex justify-content-between align-items-center mb-4 pt-1 border bg-light rounded pt-2 px-2">
+    <h2>Les derniers articles</h2>
     <span class="fw-bold">
         <a href="{{ path('article_index') }}" class="text-decoration-none">
             Tous les articles &#8594;
@@ -30,7 +30,7 @@
                     <br>
                         {% for tag in article.tag %}
                             <a href="{{ path('tag_show', {'slug': tag.slug}) }}" class="text-decoration-none text-dark">
-                                <span style="font-size:0.7rem;">{{ tag.title }}</span>
+                                <span class="home-article-tag">{{ tag.title }}</span>
                             </a>
                         {% endfor %}
                     </p>
@@ -79,7 +79,7 @@
                 <br>
                     {% for tag in article.tag %}
                         <a href="{{ path('tag_show', {'slug': tag.slug}) }}" class="text-decoration-none text-dark">
-                            <span style="font-size:0.7rem;">{{ tag.title }}</span>
+                            <span class="home-article-tag">{{ tag.title }}</span>
                         </a>
                     {% endfor %}
                 </p>
@@ -95,7 +95,7 @@
                     </a>
                 </p>
             </div>
-            <div class="card-footer text-center" style="font-size:12px;">
+            <div class="card-footer card-text-footer text-center">
                 <i class="fas fa-calendar-alt"></i> {{ article.createdAt|format_datetime('medium', 'short', locale='fr') }} | 
                 <i class="fas fa-user-tie"></i> {{ article.author.prenom }} {{ article.author.nom }}
                 {% if article.comments|length >= 1 %}

@@ -15,7 +15,7 @@ use App\Repository\CategoryRepository;
 use App\Repository\CommentRepository;
 
 
-class footerExtension extends AbstractExtension
+class headerExtension extends AbstractExtension
 {
     /**
      * @var ArticleRepository
@@ -69,11 +69,11 @@ class footerExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('footer', [$this, 'getFooter'], ['is_safe' => ['html']])
+            new TwigFunction('header', [$this, 'getHeader'], ['is_safe' => ['html']])
         ];
     }
 
-    public function getFooter(): string
+    public function getHeader(): string
     {
         $articles = $this->articleRepository->popularArticles();
         $articlesAll = $this->articleRepository->findAll();
@@ -82,14 +82,12 @@ class footerExtension extends AbstractExtension
         $users = $this->userRepository->findAll();
         $views = $this->articleRepository->totalViews();
         $tags = $this->tagRepository->findAll();
-        $footerTags = $this->tagRepository->footerTags();
         $commentsAll = $this->commentRepository->findAll();
         $lastComments = $this->commentRepository->lastComments();
 
-
         try {
-            return $this->twig->render('home/footer.html.twig',
-                compact('articles', 'articlesAll', 'categories', 'categoriesAll', 'users', 'views', 'tags', 'footerTags', 'commentsAll', 'lastComments'));
+            return $this->twig->render('home/header.html.twig',
+                compact('articles', 'articlesAll', 'categories', 'categoriesAll', 'users', 'views', 'tags', 'commentsAll', 'lastComments'));
         } 
         catch (LoaderError | RuntimeError | SyntaxError $e) {
         }

@@ -30,8 +30,8 @@ class SearchController extends AbstractController
                 'label' => false,
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Entrez un mot-clé',
-                    'size' => '15'
+                    'placeholder' => 'Recherche',
+                    'size' => '12'
                 ]
             ])
             ->getForm();

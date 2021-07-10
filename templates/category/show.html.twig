@@ -3,24 +3,42 @@
 {% block title %}Category{% endblock %}
 
 {% block body %}
-    <h1>Category</h1>
+    <h2 class="mb-4 border-bottom">Catégorie : {{ category.title }}</h2>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ category.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ category.title }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-9 pe-5">
+            <h5 class="border-bottom mb-3">Les articles de la catégorie :</h5>
+            {% for c in category.articles %}
+                <div class="row py-1">
+                    <div class="col border-bottom mb-3">
+                        <img src="{{ asset('uploads/images/articles/') ~ c.image }}" class="img-fluid float-start category-image me-3 mt-2" alt="{{ c.title }}">
+                        <a href="{{ path('article_show', { 'slug': c.slug }) }}" class="text-decoration-none lead">
+                            {{ c.title }}
+                        </a>
+                        <p>
+                            {{ c.presentation }}
+                        </p>
+                    </div>
+                </div>
+            {% else %}
+                <div class="row py-1">
+                    <div class="col">
+                        Il n'y a aucun article dans cette catégorie..
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="col shadow pt-3">
+            {% block sidebar %}
+                {{ sidebar() }}
+            {% endblock %}
+        </div>
+    </div>
 
+    {#
     <a href="{{ path('category_index') }}">back to list</a>
-
     <a href="{{ path('category_edit', {'slug': category.slug}) }}">edit</a>
-
     {{ include('category/_delete_form.html.twig') }}
+    #}
+    
 {% endblock %}

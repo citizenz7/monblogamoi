@@ -3,45 +3,77 @@
 {% block title %}Article index{% endblock %}
 
 {% block body %}
-<h2>Tous les articles</h2>
+<h2 class="border-bottom mb-4 text-primary">Tous les articles</h2>
 
-<div class="row row-cols-1 row-cols-md-4 g-4">
+<div class="row">
 
-    {% for article in articles %}
-    <div class="col">
-        <div class="card h-100">
-            <img src="{{ asset('uploads/images/articles/' ~ article.image) }}" class="card-img-top"
-                alt="{{ article.title }}">
-            <div class="card-body">
-                {% for cat in article.category %}
-                    <a href="{{ path('category_show', {'slug': cat.slug}) }}" class="text-decoration-none font-monospace text-dark me-1">
-                        {{ cat.title }}
-                    </a>
-                {% endfor %}
-                <br>
-                {% for tag in article.tag %}
-                    <a href="{{ path('tag_show', {'slug': tag.slug}) }}" class="text-decoration-none text-dark">
-                        <span style="font-size:0.7rem;">{{ tag.title }}</span>
-                    </a>
-                {% endfor %}
-                <h5 class="card-title">
-                    <a href="{{ path('article_show', {'slug': article.slug}) }}" class="text-decoration-none text-dark">
-                        {{ article.title }}
-                    </a>
-                </h5>
-                <p class="small">
-                    {{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}
-                    {{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}
-                </p>
-            </div>
-        </div>
+    <div class="col-9 pe-4">
+        {% for article in articles %}
+            <a href="{{ path('article_show', {'slug': article.slug}) }}" class="text-decoration-none text-dark h4">{{ article.title }}</a>
+            <p class="mt-1">
+                {{ article.presentation }}
+            </p>
+            <p>
+                <img src="{{ asset('uploads/images/articles/' ~ article.image) }}" class="img-fluid img-thumbnail float-end ms-3 mt-1"
+                alt="{{ article.title }}" style="max-width:175px; width:100%;">
+                {{ article.content|slice(0,500)|raw }}...
+            </p>
+            <a href="{{ path('article_show', {'slug': article.slug}) }}" class="text-decoration-none">
+                <span>Lire la suite &#8594;</span>
+            </a>
+            <hr>
+        {% endfor %}
     </div>
-    {% endfor %}
+    <div class="col-3 shadow pt-3">
+        {% block sidebar %}
+            {{ sidebar() }}
+        {% endblock %}
+    </div>
+
+    <div class="col-9 pagination justify-content-center px-2 mt-3 mb-5">
+        {{ knp_pagination_render(articles) }}
+    </div>
 
 </div>
 
-<div class="pagination justify-content-center px-2 mt-5">
-    {{ knp_pagination_render(articles) }}
+<div class="row">
+    <div class="col-4">
+        <h5 class="border-bottom">Linux</h5>
+
+        <a href="#" class="text-decoration-none text-dark">
+            <h6>Titre de l'article très bien dans cette actégorie</h6>
+            <p class="mb-4 small">
+                Présentation : Huic Arabia, ex alio latere Nabataeis contigua; 
+                conmerciorum castrisque oppleta validis et castellis, repellendos gentium.
+            </p>
+        </a>
+
+        <a href="#" class="text-decoration-none text-dark">
+            <h6>Titre de l'article très bien dans cette actégorie</h6>
+            <p class="mb-4 small">
+                Présentation : ex alio latere Nabataeis contigua; 
+                conmerciorum oppleta validis et castellis, ad repellendos gentium vicinarum.
+            </p>
+        </a>
+
+        <a href="#" class="text-decoration-none text-dark">
+            <h6>Titre de l'article très bien dans cette actégorie</h6>
+            <p class="mb-4 small">
+                Présentation : Huic Arabia est conserta, ex alio latere ; opima varietate 
+                oppleta validis et castellis.
+            </p>
+        </a>
+    </div>
+
+    <div class="col-4">
+        <h5 class="border-bottom">Windows</h5>
+
+    </div>
+
+    <div class="col-4">
+        <h5 class="border-bottom">Société</h5>
+
+    </div>
 </div>
 
 {% endblock %}

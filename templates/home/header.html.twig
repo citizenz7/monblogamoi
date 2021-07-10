@@ -1,0 +1,71 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container">
+        <a class="h3 text-decoration-none me-3 text-white" href="{{ path('home') }}">
+            <img src="{{ asset('images/logo.png') }}" alt="{{ site_name }}" class="img-fluid header-logo">
+            {{ site_name }}
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link {% if current_menu is defined and current_menu == 'Accueil' %} active {% endif %}"
+                        href="{{ path('home') }}">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if current_menu is defined and current_menu == 'Blog' %} active {% endif %}"
+                        href="{{ path('article_index') }}">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if current_menu is defined and current_menu == 'A propos' %} active {% endif %}"
+                        href="{{ path('apropos') }}">A propos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if current_menu is defined and current_menu == 'Contact' %} active {% endif %}"
+                        href="{{ path('contact') }}">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if current_menu is defined and current_menu == 'Cgu' %} active {% endif %}"
+                        href="{{ path('cgu') }}">CGU</a>
+                </li>
+                {% if app.user %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Mon compte
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">{{ app.user.prenom }} {{ app.user.nom }}</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{{ path('user_show', {'id': app.user.id}) }}">Profil</a>
+                        </li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <li><a class="dropdown-item" href="{{ path('admin') }}">Administration</a></li>
+                        {% endif %}
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a></li>
+                    </ul>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link {% if current_menu is defined and current_menu == 'Connexion' %} active {% endif %}"
+                        href="{{ path('app_login') }}">Connexion</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if current_menu is defined and current_menu == 'Enregistrement' %} active {% endif %}"
+                        href="{{ path('app_register') }}">Créer un compte</a>
+                </li>
+                {% endif %}
+            </ul>
+
+            {{ render(controller('App\\Controller\\SearchController::searchBar')) }}
+
+        </div>
+    </div>
+</nav>

@@ -5,7 +5,7 @@
                 <div class="col-sm-6 text-white">
                     <h4>
                         {{ site_name }}
-                        <span class="fst-italic" style="font-size: 10px;">
+                        <span class="site-version fst-italic">
                             version {{ site_version }}
                         </span>
                     </h4>
@@ -13,36 +13,35 @@
                         {{ site_slogan }}
                     </p>
                     <p>
-                        <i class="fab fa-facebook-square fa-2x pe-1"></i>
-                        <i class="fab fa-twitter-square fa-2x px-1"></i>
-                        <i class="fab fa-linkedin fa-2x px-1"></i>
-                        <i class="fab fa-youtube-square fa-2x px-1"></i>
-                        <i class="fab fa-instagram-square fa-2x px-1"></i>
-                        <i class="fab fa-github-square fa-2x px-1"></i>
-                        <i class="fas fa-envelope-square fa-2x px-1"></i>
-                        <i class="fas fa-rss-square fa-2x px-1"></i>
+                        <a href="#" class="text-white"><i class="fab fa-facebook-square fa-2x pe-1"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-twitter-square fa-2x px-1"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-linkedin fa-2x px-1"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube-square fa-2x px-1"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-instagram-square fa-2x px-1"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-github-square fa-2x px-1"></i></a>
+                        <a href="#" class="text-white"><i class="fas fa-envelope-square fa-2x px-1"></i></a>
+                        <a href="{{ path('rss_feed') }}" class="text-white"><i class="fas fa-rss-square fa-2x px-1"></i></a>
+                    </p>
+                    <p class="footer-copy fst-italic">
+                        {{ site_name }} 2021 - Certains droits réservés <a class="text-warning" href="https://www.gnu.org/licenses/gpl-3.0.fr.html" target="_blank">GPLv3</a>
                     </p>
                 </div>
                 <div class="col-sm-3">
                     <h5 class="text-white">Catégories</h5>
                     <div>
-                        <select onchange="document.location.href = this.value" class="form-select form-select-sm">
-                            <option selected>Sélectionnez une catégorie</option>
-                            {% for cat in categoriesAll %}
-                            <option value="{{ path('category_show', {'slug': cat.slug}) }}">
-                                <a href="{{ path('category_show', {'slug': cat.slug}) }}" class="text-white small">
-                                    {{ cat.title }}
-                                </a>
-                                ({{ cat.articles|length }})
-                            </option>
-                            {% endfor %}
-                        </select>
+                        {% for c in categoriesAll %}
+                            <a href="{{ path('category_show', {'slug': c.slug}) }}" class="badge border text-white mx-1 my-1">
+                                {{ c.title }}
+                            </a>
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <h5 class="text-white">Tags</h5>
-                    {% for t in tags %}
-                        <a href="{{ path('tag_show', {'slug': t.slug}) }}" class="badge border text-white">{{ t.title }}</a>
+                    {% for t in footerTags %}
+                        <a href="{{ path('tag_show', {'slug': t.slug}) }}" class="badge border text-white mx-1 my-1">
+                            {{ t.title }}
+                        </a>
                     {% endfor %}
                 </div>
             </div>
