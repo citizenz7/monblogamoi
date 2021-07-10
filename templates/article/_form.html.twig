@@ -1,6 +1,34 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn btn-sm btn-success">{{ button_label|default('Créer') }}</button> 
-    <button class="btn btn-sm btn-secondary" type="reset">Annuler</button> 
-    <a class="btn btn-sm btn-primary" href="{{ path('tag_index') }}">Liste des Articles</a>
+    {#{ form_widget(form) }#}
+    {{ form_row(form.title) }}
+    <div class="my-3">
+        {{ form_row(form.presentation) }}
+    </div>
+    <div class="my-3">
+        {{ form_row(form.content) }}
+    </div>
+
+    {% if app.request.get('_route') == 'article_edit' %}
+        {% if article.image is not empty %}
+        {% trans %}Image actuelle{% endtrans %} : {{ article.image }}<br>
+            <img src="{{ asset('uploads/images/articles/' ~ article.image) }}" alt="{{ article.title }}" class="img-fluid mb-3 article-show-image">
+            <p>
+                <a href="{{ path('article_delete_image', {'slug': article.slug}) }}" class="btn btn-sm btn-danger">{% trans %}Supprimer l'image{% endtrans %}</a>
+            </p>
+        {% else %}
+            <div class="text-white bg-danger p-2 mb-2 text-center">
+                <i class="bi bi-exclamation-lg"></i> {% trans %}Il n'y a aucune image pour cet article. Veuillez en sélectionner une.{% endtrans %}
+            </div>
+        {% endif %}
+    {% endif %}
+    
+    {{ form_row(form.image) }}
+    {{ form_row(form.category) }}
+    {{ form_row(form.tag) }}
+
+    <div class="mt-4">
+        <button class="btn btn-sm btn-success">{{ button_label|default('Créer') }}</button> 
+        <button class="btn btn-sm btn-secondary" type="reset">{% trans %}Annuler{% endtrans %}</button> 
+        <a class="btn btn-sm btn-primary" href="{{ path('article_index') }}">{% trans %}Liste des articles{% endtrans %}</a>
+    </div>
 {{ form_end(form) }}

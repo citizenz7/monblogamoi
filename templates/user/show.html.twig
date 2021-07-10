@@ -1,9 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User{% endblock %}
+{% block title %}{{ user.prenom }} {{ user.nom }}{% endblock %}
 
 {% block body %}
-    <h2>Profil de {{ user.prenom }} {{ user.nom }}</h2>
+
+    {% for message in app.flashes('message') %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+
+    <h2>{% trans %}Profil de{% endtrans %} {{ user.prenom }} {{ user.nom }}</h2>
 
     <table class="table">
         <tbody>
@@ -12,7 +20,7 @@
                 <td>{{ user.id }}</td>
             </tr>
             <tr>
-                <th>Email</th>
+                <th>{% trans %}Email{% endtrans %}</th>
                 <td>{{ user.email }}</td>
             </tr>
             <tr>
@@ -27,32 +35,32 @@
                 </td>
             </tr>
             <tr>
-                <th>Compte vérifié</th>
+                <th>{% trans %}Compte vérifié{% endtrans %}</th>
                 <td>{{ user.isVerified ? 'Oui' : 'Non' }}</td>
             </tr>
             <tr>
-                <th>Nom</th>
+                <th>{% trans %}Nom<{% endtrans %}/th>
                 <td>{{ user.nom }}</td>
             </tr>
             <tr>
-                <th>Prenom</th>
+                <th>{% trans %}Prénom{% endtrans %}</th>
                 <td>{{ user.prenom }}</td>
             </tr>
             <tr>
-                <th>Avatar</th>
+                <th>{% trans %}Avatar{% endtrans %}</th>
                 <td><img src="{{ asset('uploads/images/users/' ~ user.avatar) }}" alt="{{ user.prenom }} {{ user.nom }}" class="img-fluid" style="max-width: 100px; width: 100%;"></td>
             </tr>
             <tr>
-                <th>Enregistré le</th>
-                <td>{{ user.createdAt|format_datetime('medium', 'short', locale='fr') }}</td>
+                <th>{% trans %}Enregistré le{% endtrans %}</th>
+                <td>{{ user.createdAt|format_datetime('medium', 'short') }}</td>
             </tr>
         </tbody>
     </table>
 
     <div class="d-flex justify-content-between align-items-center mt-5">
         <span>
-            <a class="btn btn-success" href="{{ path('user_edit', {'id': user.id}) }}">Modifier le profil</a>
-            <button type="reset" class="btn btn-secondary">Annuler</button>
+            <a class="btn btn-success" href="{{ path('user_edit', {'id': user.id}) }}">{% trans %}Modifier le profil{% endtrans %}</a>
+            <button type="reset" class="btn btn-secondary">{% trans %}Annuler{% endtrans %}</button>
         </span>
         <span>
             {{ include('user/_delete_form.html.twig') }}

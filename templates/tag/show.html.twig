@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tag{% endblock %}
+{% block title %}{% trans %}Tag{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h2 class="mb-4 border-bottom">Tag : {{ tag.title }}</h2>
+    <h2 class="mb-4 border-bottom">{% trans %}Tag{% endtrans %} : {{ tag.title }}</h2>
 
     <div class="row">
         <div class="col-9">
-            <h5>Les articles du tag :</h5>
+            <h5>{% trans %}Les articles du tag{% endtrans %} :</h5>
             {% for t in tag.articles %}
                 <div class="row py-1">
                     <div class="col">
@@ -20,7 +20,7 @@
             {% else %}
                 <div class="row py-1">
                     <div class="col">
-                        Il n'y a aucun article pour ce tag.
+                        {% trans %}Il n'y a aucun article pour ce tag.{% endtrans %}
                     </div>
                 </div>
             {% endfor %}
@@ -31,9 +31,5 @@
             {% endblock %}
         </div>
     </div>
-    {#
-    <a href="{{ path('tag_index') }}">back to list</a>
-    <a href="{{ path('tag_edit', {'slug': tag.slug}) }}">edit</a>
-    {{ include('tag/_delete_form.html.twig') }}
-    #}
+
 {% endblock %}

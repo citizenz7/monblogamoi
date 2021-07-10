@@ -12,56 +12,73 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link {% if current_menu is defined and current_menu == 'Accueil' %} active {% endif %}"
-                        href="{{ path('home') }}">Accueil</a>
+                        href="{{ path('home') }}">{% trans %}Accueil{% endtrans %}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {% if current_menu is defined and current_menu == 'Blog' %} active {% endif %}"
-                        href="{{ path('article_index') }}">Blog</a>
+                        href="{{ path('article_index') }}">{% trans %}Blog{% endtrans %}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {% if current_menu is defined and current_menu == 'A propos' %} active {% endif %}"
-                        href="{{ path('apropos') }}">A propos</a>
+                        href="{{ path('apropos') }}">{% trans %}A propos{% endtrans %}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {% if current_menu is defined and current_menu == 'Contact' %} active {% endif %}"
-                        href="{{ path('contact') }}">Contact</a>
+                        href="{{ path('contact') }}">{% trans %}Contact{% endtrans %}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {% if current_menu is defined and current_menu == 'Cgu' %} active {% endif %}"
-                        href="{{ path('cgu') }}">CGU</a>
+                        href="{{ path('cgu') }}">{% trans %}CGU{% endtrans %}</a>
                 </li>
                 {% if app.user %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        Mon compte
+                        {% trans %}Mon compte{% endtrans %}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">{{ app.user.prenom }} {{ app.user.nom }}</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="{{ path('user_show', {'id': app.user.id}) }}">Profil</a>
+                        <li><a class="dropdown-item" href="{{ path('user_show', {'id': app.user.id}) }}">{% trans %}Profil{% endtrans %}</a>
                         </li>
                         {% if is_granted('ROLE_ADMIN') %}
-                        <li><a class="dropdown-item" href="{{ path('admin') }}">Administration</a></li>
+                        <li><a class="dropdown-item" href="{{ path('admin') }}">{% trans %}Administration{% endtrans %}</a></li>
                         {% endif %}
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_logout') }}">{% trans %}Déconnexion{% endtrans %}</a></li>
                     </ul>
                 </li>
                 {% else %}
-                <li class="nav-item">
-                    <a class="nav-link {% if current_menu is defined and current_menu == 'Connexion' %} active {% endif %}"
-                        href="{{ path('app_login') }}">Connexion</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {% if current_menu is defined and current_menu == 'Enregistrement' %} active {% endif %}"
-                        href="{{ path('app_register') }}">Créer un compte</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="far fa-user-circle"></i>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li>
+                        <a class="dropdown-item" href="{{ path('app_login') }}">{% trans %}Connexion{% endtrans %}</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{{ path('app_register') }}">{% trans %}Créer un compte{% endtrans %}</a>
+                    </li>
+                    </ul>
                 </li>
                 {% endif %}
+                <li class="nav-item">
+                    {% for locale in locales %}
+                        {% if locale != app.request.locale %}
+                            <li>
+                                <a class="nav-link" href="{{ path('change_locale', {'locale': locale}) }}" class="nav-link">
+                                    <img src="{{ asset('images/'~locale~'.png') }}" alt="{{ locale }}" class="img-fluid">
+                                </a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </li>
             </ul>
 
             {{ render(controller('App\\Controller\\SearchController::searchBar')) }}

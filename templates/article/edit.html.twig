@@ -1,10 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Article{% endblock %}
+{% block title %}{% trans %}Modifier l'article{% endtrans %}{% endblock %}
+
+{% block stylesheets %}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+{% endblock %}
+
 
 {% block body %}
-    <h1>Modifier l'article</h1>
+    <h1>{% trans %}Modifier l'article{% endtrans %}</h1>
 
     {{ include('article/_form.html.twig', {'button_label': 'Modifier'}) }}
 
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script>
+        $(function(){
+            $('.select-tags').select2({
+                tags: true,
+                tokenSeparators: [',', ' ']
+            }).on('change', function(e){
+                let label = $(this).find("[data-select2-tag=true]")
+                if(label.length && $.inArray(label.val(), $(this).val() !== -1)){
+                    $.ajax({
+                        url: "/admin/tag/new/ajax/" + label.val(),
+                        type: "POST"
+                    }).done(function(data){
+                        label.replaceWith(`<option selected value="${data.id}">${label.val()}</option>`);
+                    })
+                }
+            });
+        })
+    </script>
 {% endblock %}

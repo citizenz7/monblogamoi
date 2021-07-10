@@ -41,11 +41,13 @@ class CommentType extends AbstractType
             ->add('parentid', HiddenType::class, [
                 'mapped' => false
             ])
-            /*->add('send', SubmitType::class, [
+            ->add('captcha', CaptchaType::class, [
+                'label' => 'Code anti spam',
                 'attr' => [
-                    'class' => 'btn btn-success'
+                    'style' => 'width: 200px',
+                    'class' => 'mb-3'
                 ]
-            ])*/
+            ])
         ;
     }
 

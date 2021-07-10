@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Tag{% endblock %}
+{% block title %}{% trans %}Créer un nouveau tag{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>Créer un nouveau tag</h1>
+    <h2>{% trans %}Créer un nouveau tag{% endtrans %}</h2>
 
     {{ include('tag/_form.html.twig') }}
 

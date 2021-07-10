@@ -2,12 +2,19 @@ twig:
     default_path: '%kernel.project_dir%/templates'
 
     globals:
+        locales: '%app.locales%'
         site_name: MonBlogAMoi
         site_url: monblogamoi.com
         site_utl_full: https://wwwmonblogamoi.com
         site_email: contact@monblogamoi.com
+        facebook: 
+        twitter: 
+        linkedin: 
+        youtube: 
+        instagram: 
+        github: 
         site_author: citizenz
-        site_version: 0.1.6
+        site_version: 0.2.1
         site_slogan: Introiit cum quaedam festinatis Caesare diu relationibus sed abditus nec venisset nec supervacua multa relationibus videri sed addens publicum abditus.
 
 when@test:

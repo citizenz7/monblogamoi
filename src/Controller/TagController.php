@@ -5,18 +5,17 @@ namespace App\Controller;
 use App\Entity\Tag;
 use App\Form\TagType;
 use App\Repository\TagRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-/**
- * @Route("/tag")
- */
 class TagController extends AbstractController
 {
     /**
-     * @Route("/", name="tag_index", methods={"GET"})
+     * @Route("/tag", name="tag_index", methods={"GET"})
      */
     public function index(TagRepository $tagRepository): Response
     {
@@ -26,7 +25,17 @@ class TagController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="tag_new", methods={"GET","POST"})
+     * @Route("/admin/tag", name="tag_admin_index", methods={"GET"})
+     */
+    public function indexAdmin(TagRepository $tagRepository): Response
+    {
+        return $this->render('tag/index.admin.html.twig', [
+            'tags' => $tagRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/admin/tag/new", name="tag_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -49,7 +58,20 @@ class TagController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}", name="tag_show", methods={"GET"})
+     * @Route("/admin/tag/new/ajax/{label}", name="tag_new_ajax", methods={"POST"})
+     */
+    public function newTagAjax(string $label, EntityManagerInterface $em): Response 
+    {
+        $tag = new Tag();
+        $tag->setTitle(trim(strip_tags($label)));
+        $em->persist($tag);
+        $em->flush();
+        $id = $tag->getId();
+        return new JsonResponse(['id' => $id]);
+    }
+
+    /**
+     * @Route("/tag/{slug}", name="tag_show", methods={"GET"})
      */
     public function show(Tag $tag): Response
     {
@@ -59,7 +81,7 @@ class TagController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}/edit", name="tag_edit", methods={"GET","POST"})
+     * @Route("/admin/tag/{slug}/edit", name="tag_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Tag $tag): Response
     {
@@ -79,7 +101,7 @@ class TagController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}", name="tag_delete", methods={"POST"})
+     * @Route("/admin/tag/{slug}", name="tag_delete", methods={"POST"})
      */
     public function delete(Request $request, Tag $tag): Response
     {

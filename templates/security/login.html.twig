@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ site_name }} : Connexion{% endblock %}
+{% block title %}{{ site_name }} : {% trans %}Connexion{% endtrans %}{% endblock %}
 
 {% block body %}
 <div class="row d-flex justify-content-center py-5 my-5">
@@ -12,11 +12,11 @@
 
             {% if app.user %}
             <div class="mb-3">
-               Vous êtes connecté(e) en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
+                {% trans %}Vous êtes connecté(e) en tant que{% endtrans %} {{ app.user.username }}, <a href="{{ path('app_logout') }}">{% trans %}Déconnexion{% endtrans %}</a>
             </div>
             {% endif %}
 
-            <h1 class="h3 mb-3 font-weight-normal text-center">Connexion</h1>
+            <h1 class="h3 mb-3 font-weight-normal text-center">{% trans %}Connexion{% endtrans %}</h1>
             <p>
                 <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control"
                     autocomplete="email" placeholder="E-mail" required autofocus>
@@ -40,13 +40,13 @@
             #}
 
             <div class="d-grid gap-2">
-                <button class="btn btn-success" type="submit">Connexion</button> 
-                <button type="reset" class="btn btn-secondary">Annuler</button>
+                <button class="btn btn-success" type="submit">{% trans %}Connexion{% endtrans %}</button> 
+                <button type="reset" class="btn btn-secondary">{% trans %}Annuler{% endtrans %}</button>
             </div>
         </form>
 
         <div class="text-center mt-4">
-            <a href="{{ path('app_forgot_password_request') }}" class="text-decoration-none"><i class="fas fa-sync"></i> Mot de passe perdu ?</a>
+            <a href="{{ path('app_forgot_password_request') }}" class="text-decoration-none"><i class="fas fa-sync"></i> {% trans %}Mot de passe perdu ?{% endtrans %}</a>
         </div>
 
     </div>

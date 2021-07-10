@@ -1,7 +1,7 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
     <button class="btn btn-sm btn-success">{{ button_label|default('Créer') }}</button> 
-    <button class="btn btn-sm btn-secondary" type="reset">Annuler</button> 
-    <a class="btn btn-sm btn-primary" href="{{ path('category_index') }}">Liste des Catégories</a>
+    <button class="btn btn-sm btn-secondary" type="reset">{% trans %}Annuler{% endtrans %}</button> 
+    <a class="btn btn-sm btn-primary" href="{{ path('category_index') }}">{% trans %}Liste des Catégories{% endtrans %}</a>
 {{ form_end(form) }}
 

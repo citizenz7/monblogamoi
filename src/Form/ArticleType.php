@@ -75,7 +75,7 @@ class ArticleType extends AbstractType
                 }
             ])
             ->add('tag', EntityType::class, [
-                'label' => 'Tags de l\'article. Choisissez-en un ou plusieurs.',
+                'label' => 'Tags de l\'article. Vous pouvez choisir les tags dans la liste ou en créer de nouveaux simplement en tapant leur nom suivi dun espace.',
                 'class' => Tag::class,
                 'choice_label' => 'title',
                 'multiple' => true,

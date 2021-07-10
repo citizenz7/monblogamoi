@@ -118,6 +118,12 @@
     "gedmo/doctrine-extensions": {
         "version": "v3.1.0"
     },
+    "gregwar/captcha": {
+        "version": "v1.1.9"
+    },
+    "gregwar/captcha-bundle": {
+        "version": "v2.1.5"
+    },
     "knplabs/knp-components": {
         "version": "v3.1.0"
     },

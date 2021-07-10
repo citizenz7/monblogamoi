@@ -240,7 +240,7 @@ class ArticleController extends AbstractController
 
         // Redirect to edit page
         $this->addFlash('image_delete', 'L\'image de l\'article a été supprimée avec succès.');
-        return $this->redirectToRoute('article_edit', ['id' => $article->getId()]);
+        return $this->redirectToRoute('article_edit', ['slug' => $article->getSlug()]);
     }
 
     /**

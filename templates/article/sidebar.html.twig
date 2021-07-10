@@ -1,11 +1,11 @@
-<h5 class="border-bottom">Articles les + lus</h5>
+<h5 class="border-bottom">{% trans %}Articles les + lus{% endtrans %}</h5>
 <div class="mb-4">
     {% for a in articles %}
     <div class="clearfix small my-3">
         <img src="{{ asset('uploads/images/articles/' ~ a.image) }}" alt="{{ a.title }}"
             class="img-fluid float-start article-image me-2">
         <a href="{{ path('article_show', {'slug': a.slug}) }}"
-            class="text-decoration-none">{{ a.title|slice(0,25) }}...</a>
+            class="text-decoration-none small">{{ a.title|slice(0,30) }}...</a>
         <br>
         <div clas="d-flex justify-content-between align-items-center">
             <span>
@@ -18,37 +18,50 @@
     {% endfor %}
 </div>
 
-<h5 class="border-bottom">Commentaires</h5>
+<h5 class="border-bottom">{% trans %}Commentaires{% endtrans %}</h5>
 <div class="mb-4">
     {% for c in lastComments %}
-    <div class="clearfix my-3">
-        <i class="fas fa-comment-dots"></i>
-        <a href="{{ path('article_show', { 'slug': c.slug }) }}#comments"
-            class="small text-decoration-none">{{ c.content|slice(0,50) }}...</a>
-        <span class="small">, par {{ c.nickname }}, le
-            {{ c.created_at|format_datetime('short', 'none', locale='fr') }}</span>
+    <div class="clearfix small my-3">
+        <i class="fas fa-comment-alt fa-2x float-start me-2 mt-2"></i>
+        <a href="{{ path('article_show', { 'slug': c.slug }) }}#comments" class="small text-decoration-none">{{ c.content|slice(0,40) }}...</a>
+        <span class="small">, par {{ c.nickname }}, le {{ c.created_at|format_datetime('short', 'none') }}</span>
     </div>
     {% endfor %}
 </div>
 
-<h5 class="border-bottom">Stats du site</h5>
+<h5 class="border-bottom">{% trans %}Stats du site{% endtrans %}</h5>
 <div class="clearfix small my-3">
     <ul class="list-group list-group-flush">
-        <li class="list-group-item d-flex justify-content-between align-items-center">Articles
+        <li class="list-group-item d-flex justify-content-between align-items-center">{% trans %}Articles{% endtrans %}
             <span class="badge bg-success rounded py-1 px-2 ml-5">
                 {{ articlesAll | length }}
             </span>
         </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">Commentaires
+        <li class="list-group-item d-flex justify-content-between align-items-center">{% trans %}Commentaires{% endtrans %}
             <span class="badge bg-success rounded py-1 px-2 ml-5">
                 {{ commentsAll | length }}
             </span>
         </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">Lectures
+        <li class="list-group-item d-flex justify-content-between align-items-center">{% trans %}Lectures{% endtrans %}
             <span class="badge bg-success rounded py-1 px-2 ml-5">
                 {% for view in views %}
                 {{ view.totalViews | number_format(0, '', ' ') }}
                 {% endfor %}
+            </span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">{% trans %}Catégories{% endtrans %}
+            <span class="badge bg-success rounded py-1 px-2 ml-5">
+                {{ categoriesAll | length }}
+            </span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">{% trans %}Tags{% endtrans %}
+            <span class="badge bg-success rounded py-1 px-2 ml-5">
+                {{ tags | length }}
+            </span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">{% trans %}Utilisateurs{% endtrans %}
+            <span class="badge bg-success rounded py-1 px-2 ml-5">
+                {{ users | length }}
             </span>
         </li>
     </ul>

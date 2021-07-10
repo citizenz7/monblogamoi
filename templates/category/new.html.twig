@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Category{% endblock %}
+{% block title %}{% trans %}Créer une nouvelle catégorie{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>Créer une nouvelle catégorie</h1>
+    <h1>{% trans %}Créer une nouvelle catégorie{% endtrans %}</h1>
 
     {{ include('category/_form.html.twig') }}
 

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ site_name }} : vos résulats de recherche{% endblock %}
+{% block title %}{{ site_name }} : {% trans %}vos résulats de recherche{% endtrans %}{% endblock %}
 
 {% block body %}
 
@@ -9,9 +9,9 @@
         {% if app.request.method == 'POST' %}
             <div>
                 {% if articles | length == 0 %}
-                    <h4>Aucun résulat pour votre recherche.</h4>
+                    <h4>{% trans %}Aucun résulat pour votre recherche.{% endtrans %}</h4>
                 {% else %}
-                    <h3 class="mt-3">Vos résulats de recherche :</h3>
+                    <h3 class="mt-3">{% trans %}Vos résulats de recherche{% endtrans %} :</h3>
                     {% for article in articles %}
                         <div class="mt-3 p-3 bg-light border rounded">
                             <a class="text-decoration-none" href="{{ path('article_show', {'slug': article.slug}) }}">
@@ -19,7 +19,7 @@
                             </a>
                             <br>
                             <span class="small fst-italic">
-                                Posté le {{ article.createdAt|format_datetime('medium', 'short') }} par {{ article.author.prenom }} {{ article.author.nom }}
+                                {% trans %}Posté le{% endtrans %} {{ article.createdAt|format_datetime('medium', 'short') }} {% trans %}par{% endtrans %} {{ article.author.prenom }} {{ article.author.nom }}
                             </span>
                         </div>
                     {% endfor %}

@@ -1,35 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminController!{% endblock %}
+{% block title %}Administration{% endblock %}
 
 {% block body %}
 
 <div class="row mb-5 pb-5">
     <div class="col">
-        <h4>Articles</h4>
+        <h4>{% trans %}Articles{% endtrans %}</h4>
         <div class="d-grid gap-2">
-            <a class="btn btn-lg btn-primary" href="{{ path('article_admin_index') }}">Liste des Articles</a>
-            <a class="btn btn-lg btn-success" href="{{ path('article_new') }}">Créer un article</a>
+            <a class="btn btn-lg btn-primary" href="{{ path('article_admin_index') }}">{% trans %}Liste des Articles{% endtrans %}</a>
+            <a class="btn btn-lg btn-success" href="{{ path('article_new') }}">{% trans %}Créer un article{% endtrans %}</a>
         </div>
     </div>
     <div class="col">
         <h4>Catégories</h4>
         <div class="d-grid gap-2">
-            <a class="btn btn-lg btn-primary" href="{{ path('category_index') }}">Liste des Catégories</a>
-            <a class="btn btn-lg btn-success" href="{{ path('category_new') }}">Créer une catégorie</a>
+            <a class="btn btn-lg btn-primary" href="{{ path('category_index') }}">{% trans %}Liste des Catégories{% endtrans %}</a>
+            <a class="btn btn-lg btn-success" href="{{ path('category_new') }}">{% trans %}Créer une catégorie<{% endtrans %}/a>
         </div>
     </div>
     <div class="col">
         <h4>Tags</h4>
         <div class="d-grid gap-2">
-            <a class="btn btn-lg btn-primary" href="{{ path('tag_index') }}">Liste des Tags</a>
-            <a class="btn btn-lg btn-success" href="{{ path('tag_new') }}">Créer un tag</a>
+            <a class="btn btn-lg btn-primary" href="{{ path('tag_index') }}">{% trans %}Liste des Tags{% endtrans %}</a>
+            <a class="btn btn-lg btn-success" href="{{ path('tag_new') }}">{% trans %}Créer un tag{% endtrans %}</a>
         </div>
     </div>
     <div class="col">
         <h4>Utilisateurs</h4>
         <div class="d-grid gap-2">
-            <a class="btn btn-lg btn-primary" href="{{ path('user_index') }}">Liste des Utilisateurs</a>
+            <a class="btn btn-lg btn-primary" href="{{ path('user_index') }}">{% trans %}Liste des Utilisateurs{% endtrans %}</a>
 
         </div>
     </div>

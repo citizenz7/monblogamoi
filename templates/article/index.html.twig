@@ -1,25 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Article index{% endblock %}
+{% block title %}{% trans %}Tous les articles{% endtrans %}{% endblock %}
 
 {% block body %}
-<h2 class="border-bottom mb-4 text-primary">Tous les articles</h2>
+<h2 class="border-bottom mb-4 text-primary">{% trans %}Tous les articles{% endtrans %}</h2>
 
 <div class="row">
 
     <div class="col-9 pe-4">
         {% for article in articles %}
             <a href="{{ path('article_show', {'slug': article.slug}) }}" class="text-decoration-none text-dark h4">{{ article.title }}</a>
-            <p class="mt-1">
+            <p class="mt-1 fst-italic">
                 {{ article.presentation }}
             </p>
             <p>
-                <img src="{{ asset('uploads/images/articles/' ~ article.image) }}" class="img-fluid img-thumbnail float-end ms-3 mt-1"
-                alt="{{ article.title }}" style="max-width:175px; width:100%;">
-                {{ article.content|slice(0,500)|raw }}...
+                <img src="{{ asset('uploads/images/articles/' ~ article.image) }}" class="img-fluid img-thumbnail float-end article-index-image ms-3 mt-1" alt="{{ article.title }}">
+                {{ article.content|slice(0,250)|raw }}...
             </p>
             <a href="{{ path('article_show', {'slug': article.slug}) }}" class="text-decoration-none">
-                <span>Lire la suite &#8594;</span>
+                <span>{% trans %}Lire la suite{% endtrans %} &#8594;</span>
             </a>
             <hr>
         {% endfor %}
@@ -41,7 +40,7 @@
         <h5 class="border-bottom">Linux</h5>
 
         <a href="#" class="text-decoration-none text-dark">
-            <h6>Titre de l'article très bien dans cette actégorie</h6>
+            <h6>Titre de l'article très bien dans cette catégorie</h6>
             <p class="mb-4 small">
                 Présentation : Huic Arabia, ex alio latere Nabataeis contigua; 
                 conmerciorum castrisque oppleta validis et castellis, repellendos gentium.

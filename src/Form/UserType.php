@@ -38,7 +38,7 @@ class UserType extends AbstractType
                 ]
             ])
             ->add('avatar', FileType::class, [
-                'label' => 'Aavatar de votre compte',
+                'label' => 'Avatar de votre compte',
                 'attr' => [
                     'class' => 'form-control mb-3'
                 ],

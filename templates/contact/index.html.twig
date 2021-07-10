@@ -1,9 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ContactController!{% endblock %}
+{% block title %}{{ site_name }} : {% trans %}me contacter{% endtrans %}{% endblock %}
 
 {% block body %}
 
-<h1>Contact</h1>
+<div class="row d-flex justify-content-center mb-5">
+    <div class="col">
+        {% for msg in app.session.flashBag.get('successContact') %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ msg }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+
+
+        <div class="card px-3 pt-3 pb-2 mb-4">
+            <p class="lead px-3">
+                <img src="{{ asset('images/contact.png') }}" alt="Contact" class="img-fluid float-start me-5">
+                <span class="fs-1 fw-bold">{% trans %}Me contacter{% endtrans %}</span>
+                <br>
+                {% trans %}Chers lecteurs,{% endtrans %}
+                <br>
+                {% trans %}Merci d'utiliser le formulaire ci-dessous pour me contacter.
+                Je vous répondrai dès que possible.{% endtrans %}
+                <span class="small fst-italic d-flex justify-content-end mt-5">{{ site_author }}</span>
+            </p>
+        </div>
+
+        {{ form_start(our_form) }}
+        <div class="row">
+            <div class="col">
+                {% trans %}Pseudo{% endtrans %} :<br>
+                {{ form_row(our_form.pseudo, {'label': false}) }}
+            </div>
+            <div class="col">
+                {% trans %}E-mail{% endtrans %} :<br>
+                {{ form_row(our_form.email, {'label': false}) }}
+            </div>
+        </div>
+        {% trans %}Votre message{% endtrans %} :<br>
+        {{ form_row(our_form.message, {'label': false}) }}
+        {% trans %}Merci de recopier le code antispam{% endtrans %} : 
+        {{ form_row(our_form.captcha, {'label': false}) }}
+        <div class="mt-4">
+            <button type="submit" class="btn btn-primary">{% trans %}Envoyer le message{% endtrans %}</button>
+            <button type="reset" class="btn btn-secondary">{% trans %}Annuler{% endtrans %}</button>
+        </div>
+        {{ form_end(our_form) }}
+
+    </div>
+</div>
 
 {% endblock %}

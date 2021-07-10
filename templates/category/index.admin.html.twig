@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% trans %}Liste des catégroies{% endtrans %}{% endblock %}
+
+{% block body %}
+    <h1>{% trans %}Liste des catégroies{% endtrans %}</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>{% trans %}Titre<{% endtrans %}/th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.title }}</td>
+                <td>
+                    <a href="{{ path('category_show', {'slug': category.slug}) }}">{% trans %}Voir{% endtrans %}</a>
+                    <a href="{{ path('category_edit', {'slug': category.slug}) }}">{% trans %}Modifier{% endtrans %}</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">{% trans %}Il n'y a aucun enregistrement.{% endtrans %}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

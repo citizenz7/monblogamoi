@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ site_name }} : Bienvenue !{% endblock %}
+{% block title %}{{ site_name }} : {% trans %}Bienvenue !{% endtrans %}{% endblock %}
 
 {% block body %}
 
 <div class="d-flex justify-content-between align-items-center mb-4 pt-1 border bg-light rounded pt-2 px-2">
-    <h2>Les derniers articles</h2>
+    <h2>{% trans %}Les derniers articles{% endtrans %}</h2>
     <span class="fw-bold">
         <a href="{{ path('article_index') }}" class="text-decoration-none">
-            Tous les articles &#8594;
+            {% trans %}Tous les articles{% endtrans %} &#8594;
         </a>
     </span>
 </div>
@@ -23,7 +23,7 @@
                 <div class="card-body">
                     <p>
                         {% for cat in article.category %}
-                            <a href="{{ path('category_show', {'slug': cat.slug}) }}" class="text-decoration-none font-monospace text-dark me-1">
+                            <a href="{{ path('category_show', {'slug': cat.slug}) }}" class="text-decoration-none font-monospace h5 text-dark me-1">
                                 {{ cat.title }}
                             </a>
                         {% endfor %}
@@ -48,14 +48,14 @@
                     <p class="card-text d-flex justify-content-between align-items-center">
                         <small class="text-muted">
                             <i class="fas fa-calendar-alt"></i>
-                            {{ article.createdAt|format_datetime('medium', 'short', locale='fr') }} |
+                            {{ article.createdAt|format_datetime('medium', 'short') }} |
                             <i class="fas fa-user-tie"></i> {{ article.author.prenom }} {{ article.author.nom }}
                             {% if article.comments|length >= 1 %}
                                 | <i class="fas fa-comment"></i> {{ article.comments|length }}
                             {% endif %}
                         </small>
                         <a href="{{ path('article_show', {'slug': article.slug}) }}" class="text-decoration-none">
-                            <span>Lire la suite &#8594;</span>
+                            <span>{% trans %}Lire la suite{% endtrans %} &#8594;</span>
                         </a>
                     </p>
                 </div>
@@ -91,12 +91,12 @@
                 </p>
                 <p class="text-end">
                     <a href="{{ path('article_show', {'slug': article.slug}) }}" class="text-decoration-none small">
-                        <span>Lire la suite &#8594;</span>
+                        <span>{% trans %}Lire la suite{% endtrans %} &#8594;</span>
                     </a>
                 </p>
             </div>
             <div class="card-footer card-text-footer text-center">
-                <i class="fas fa-calendar-alt"></i> {{ article.createdAt|format_datetime('medium', 'short', locale='fr') }} | 
+                <i class="fas fa-calendar-alt"></i> {{ article.createdAt|format_datetime('medium', 'short') }} | 
                 <i class="fas fa-user-tie"></i> {{ article.author.prenom }} {{ article.author.nom }}
                 {% if article.comments|length >= 1 %}
                     | <i class="fas fa-comment"></i> {{ article.comments|length }}

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ site_name }} : Créer un compte{% endblock %}
+{% block title %}{{ site_name }} : {% trans %}Créer un compte{% endtrans %}{% endblock %}
 
 {% block body %}
 {% for flashError in app.flashes('verify_email_error') %}
@@ -8,7 +8,7 @@
 {% endfor %}
 <div class="row d-flex justify-content-center py-5 my-5">
     <div class="col-4 border p-4 rounded">
-        <h1 class="text-center">Créer un compte</h1>
+        <h1 class="text-center">{% trans %}Créer un compte{% endtrans %}</h1>
 
         {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.email) }}
@@ -19,13 +19,13 @@
         {{ form_row(registrationForm.nom) }}
         <div class="d-flex justify-content-center">
             <p>
-                <a href="{{ path('cgu') }}" class="text-decoration-none">Accepter nos CGU</a>
+                <a href="{{ path('cgu') }}" class="text-decoration-none">{% trans %}Accepter nos CGU{% endtrans %}</a>
                 {{ form_row(registrationForm.agreeTerms) }}
             </p>
         </div>
         <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-success">Créer un compte</button> 
-            <button type="reset" class="btn btn-secondary">Annuler</button>
+            <button type="submit" class="btn btn-success">{% trans %}Créer un compte{% endtrans %}</button> 
+            <button type="reset" class="btn btn-secondary">{% trans %}Annuler{% endtrans %}</button>
         </div>
         {{ form_end(registrationForm) }}
     </div>
