@@ -1,0 +1,47 @@
+<div class="row mt-4">
+    <h4 class="border-bottom">{% trans %}Stats du site{% endtrans %}</h4>
+    <div class="my-3 col-4 lead">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center">{% trans %}Articles{% endtrans %}
+                <span class="badge bg-success rounded py-1 px-2 ml-5">
+                    {{ articlesAll | length }}
+                </span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">{% trans %}Commentaires{% endtrans %}
+                <span class="badge bg-success rounded py-1 px-2 ml-5">
+                    {{ commentsAll | length }}
+                </span>
+            </li>
+        </ul>
+    </div>
+    <div class="clearfix my-3 col-4 lead">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center">{% trans %}Catégories{% endtrans %}
+                <span class="badge bg-success rounded py-1 px-2 ml-5">
+                    {{ categoriesAll | length }}
+                </span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">{% trans %}Tags{% endtrans %}
+                <span class="badge bg-success rounded py-1 px-2 ml-5">
+                    {{ tags | length }}
+                </span>
+            </li>
+        </ul>
+    </div>
+    <div class="clearfix my-3 col-4 lead">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center">{% trans %}Lectures{% endtrans %}
+                <span class="badge bg-success rounded py-1 px-2 ml-5">
+                    {% for view in views %}
+                    {{ view.totalViews | number_format(0, '', ' ') }}
+                    {% endfor %}
+                </span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">{% trans %}Utilisateurs{% endtrans %}
+                <span class="badge bg-success rounded py-1 px-2 ml-5">
+                    {{ users | length }}
+                </span>
+            </li>
+        </ul>
+    </div>
+</div>

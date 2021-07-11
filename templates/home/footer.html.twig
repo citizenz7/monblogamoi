@@ -27,7 +27,11 @@
                     </p>
                 </div>
                 <div class="col-sm-3">
-                    <h5 class="text-white">{% trans %}Catégories{% endtrans %}</h5>
+                    <h5 class="text-white">
+                        <a href="{{ path('category_index') }}" class="text-white">
+                            <i class="fas fa-angle-right"></i> {% trans %}Catégories{% endtrans %}
+                        </a>
+                    </h5>
                     <div>
                         {% for c in categoriesAll %}
                             <a href="{{ path('category_show', {'slug': c.slug}) }}" class="badge border text-white mx-1 my-1">
@@ -37,7 +41,11 @@
                     </div>
                 </div>
                 <div class="col-sm-3">
-                    <h5 class="text-white">{% trans %}Tags{% endtrans %}</h5>
+                    <h5 class="text-white">
+                        <a href="{{ path('tag_index') }}" class="text-white">
+                            <i class="fas fa-angle-right"></i> {% trans %}Tags{% endtrans %}
+                        </a>
+                    </h5>
                     {% for t in footerTags %}
                         <a href="{{ path('tag_show', {'slug': t.slug}) }}" class="badge border text-white mx-1 my-1">
                             {{ t.title }}

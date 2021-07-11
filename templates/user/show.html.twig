@@ -1,17 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ site_name }} - {{ user.prenom }} {{ user.nom }}{% endblock %}
+{% block title %}{{ site_name }} - {{ user.nick }}{% endblock %}
 
 {% block body %}
 
-    {% for message in app.flashes('message') %}
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    {% endfor %}
-
-    <h2>{% trans %}Profil de{% endtrans %} {{ user.prenom }} {{ user.nom }}</h2>
+    <h2>{% trans %}Profil de{% endtrans %} {{ user.nick }}</h2>
 
     <table class="table">
         <tbody>
@@ -24,9 +17,12 @@
                 <td>{{ user.email }}</td>
             </tr>
             <tr>
+                <th>{% trans %}Pseudo{% endtrans %}</th>
+                <td>{{ user.nick }}</td>
+            </tr>
+            <tr>
                 <th>Roles</th>
                 <td>
-                    {#{ user.roles ? user.roles|json_encode : '' }#}
                     {% if user.roles|json_encode == '["ROLE_USER"]' %}
                         <span class="text-primary fw-bold">Utilisateur</span>
                     {% else %}

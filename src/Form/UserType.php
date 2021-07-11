@@ -22,6 +22,12 @@ class UserType extends AbstractType
                     'class' => 'form-control mb-3'
                 ]
             ])
+            ->add('nick', TextType::class, [
+                'label' => 'Pseudo',
+                'attr' => [
+                    'class' => 'form-control mb-3'
+                ]
+            ])
             //->add('roles')
             //->add('password')
             //->add('isVerified')

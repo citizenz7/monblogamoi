@@ -9,10 +9,11 @@ use App\Form\CommentType;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Mailer\MailerInterface;
 
 class ArticleController extends AbstractController
 {
@@ -70,7 +71,7 @@ class ArticleController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function new(Request $request): Response
+    public function new(Request $request, TranslatorInterface $translator): Response
     {
         $article = new Article();
 
@@ -108,7 +109,9 @@ class ArticleController extends AbstractController
             $entityManager->persist($article);
             $entityManager->flush();
 
-            $this->addFlash('success', 'L\'article a été créé avec succès.');
+            $message = $translator->trans('L\'article a été créé avec succès.');
+            $this->addFlash('message', $message);
+
             return $this->redirectToRoute('article_index');
         }
 
@@ -175,7 +178,7 @@ class ArticleController extends AbstractController
      * @param Article $article
      * @return Response
      */
-    public function edit(Request $request, Article $article): Response
+    public function edit(Request $request, Article $article, TranslatorInterface $translator): Response
     {
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
@@ -210,7 +213,9 @@ class ArticleController extends AbstractController
 
             $this->getDoctrine()->getManager()->flush();
 
-            $this->addFlash('edited', 'Le message a été modifié avec succès.');
+            $message = $translator->trans('Le message a été modifié avec succès.');
+            $this->addFlash('message', $message);
+
             return $this->redirectToRoute('article_admin_index');
         }
 
@@ -223,7 +228,7 @@ class ArticleController extends AbstractController
     /**
      * @Route("/admin/article/{slug}/delimage", name="article_delete_image", methods={"GET"})
      */
-    public function deleteImage(Request $request, Article $article): Response
+    public function deleteImage(Request $request, Article $article, TranslatorInterface $translator): Response
     {
         // Delete article's image in folder
         $image = $article->getImage();
@@ -239,7 +244,9 @@ class ArticleController extends AbstractController
         $this->getDoctrine()->getManager()->flush();
 
         // Redirect to edit page
-        $this->addFlash('image_delete', 'L\'image de l\'article a été supprimée avec succès.');
+        $message = $translator->trans('L\'image de l\'article a été supprimée avec succès.');
+        $this->addFlash('message', $message);
+
         return $this->redirectToRoute('article_edit', ['slug' => $article->getSlug()]);
     }
 
@@ -249,7 +256,7 @@ class ArticleController extends AbstractController
      * @param Article $article
      * @return Response
      */
-    public function delete(Request $request, Article $article): Response
+    public function delete(Request $request, Article $article, TranslatorInterface $translator): Response
     {
         // Delete image
         $image = $article->getImage();
@@ -267,7 +274,9 @@ class ArticleController extends AbstractController
             $entityManager->flush();
         }
 
-        $this->addFlash('deleted', 'L\'article a été supprimé avec succès.');
+        $message = $translator->trans('L\'article a été supprimé avec succès.');
+        $this->addFlash('message', $message);
+
         return $this->redirectToRoute('article_index');
     }
 }

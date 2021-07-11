@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class TagController extends AbstractController
 {
@@ -37,7 +38,7 @@ class TagController extends AbstractController
     /**
      * @Route("/admin/tag/new", name="tag_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, TranslatorInterface $translator): Response
     {
         $tag = new Tag();
         $form = $this->createForm(TagType::class, $tag);
@@ -47,6 +48,9 @@ class TagController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($tag);
             $entityManager->flush();
+
+            $message = $translator->trans('Le tag a été créé avec succès.');
+            $this->addFlash('message', $message);
 
             return $this->redirectToRoute('tag_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -83,13 +87,16 @@ class TagController extends AbstractController
     /**
      * @Route("/admin/tag/{slug}/edit", name="tag_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Tag $tag): Response
+    public function edit(Request $request, Tag $tag, TranslatorInterface $translator): Response
     {
         $form = $this->createForm(TagType::class, $tag);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+
+            $message = $translator->trans('Le tag a été modifié avec succès.');
+            $this->addFlash('message', $message);
 
             return $this->redirectToRoute('tag_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -103,13 +110,16 @@ class TagController extends AbstractController
     /**
      * @Route("/admin/tag/{slug}", name="tag_delete", methods={"POST"})
      */
-    public function delete(Request $request, Tag $tag): Response
+    public function delete(Request $request, Tag $tag, TranslatorInterface $translator): Response
     {
         if ($this->isCsrfTokenValid('delete'.$tag->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($tag);
             $entityManager->flush();
         }
+
+        $message = $translator->trans('Le tag a été supprimé avec succès.');
+        $this->addFlash('message', $message);
 
         return $this->redirectToRoute('tag_index', [], Response::HTTP_SEE_OTHER);
     }

@@ -27,6 +27,13 @@ class RegistrationFormType extends AbstractType
                     'placeholder' => 'E-mail'
                 ]
             ])
+            ->add('nick', TextType::class, [
+                'label' => false,
+                'attr' => [
+                    'class' => 'form-control mb-3',
+                    'placeholder' => 'Pseudo'
+                ]
+            ])
             ->add('prenom', TextType::class, [
                 'label' => false,
                 'attr' => [

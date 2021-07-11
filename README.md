@@ -74,8 +74,4 @@ Si vous ajoutez une nouvelle langue, n'oubliez pas de mettre à jour config/serv
 * Modifiez/adaptez la page `A propos`
 
 # TODO
-* Catégories et Tags index page avec cards
-* Colonnes catégories articles sur page BLOG
-* Messages flash
-* traduction messages flash dans Controller + flash bags dans templates
-* pages d'erreurs personnalisées
+* translation EN

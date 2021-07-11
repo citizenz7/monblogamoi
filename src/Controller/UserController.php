@@ -14,7 +14,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/user", name="user_index", methods={"GET"})
+     * @Route("/admin/user", name="user_index", methods={"GET"})
      */
     public function index(UserRepository $userRepository): Response
     {

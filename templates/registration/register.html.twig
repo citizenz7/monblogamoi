@@ -8,15 +8,16 @@
 {% endfor %}
 <div class="row d-flex justify-content-center py-5 my-5">
     <div class="col-4 border p-4 rounded">
-        <h1 class="text-center">{% trans %}Créer un compte{% endtrans %}</h1>
+        <h2 class="text-center">{% trans %}Créer un compte{% endtrans %}</h2>
 
         {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.nick) }}
+        {{ form_row(registrationForm.prenom) }}
+        {{ form_row(registrationForm.nom) }}
         {{ form_row(registrationForm.plainPassword, {
                 label: 'Mot de passe'
             }) }}
-        {{ form_row(registrationForm.prenom) }}
-        {{ form_row(registrationForm.nom) }}
         <div class="d-flex justify-content-center">
             <p>
                 <a href="{{ path('cgu') }}" class="text-decoration-none">{% trans %}Accepter nos CGU{% endtrans %}</a>

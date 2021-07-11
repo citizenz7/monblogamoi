@@ -34,22 +34,22 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        {% trans %}Mon compte{% endtrans %}
+                        <i class="fas fa-user-circle"></i>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">{{ app.user.prenom }} {{ app.user.nom }}</a></li>
+                        <li><a class="dropdown-item" href="#">{{ app.user.nick }}</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="{{ path('user_show', {'id': app.user.id}) }}">{% trans %}Profil{% endtrans %}</a>
+                        <li><a class="dropdown-item" href="{{ path('user_show', {'id': app.user.id}) }}"><i class="far fa-user"></i> {% trans %}Profil{% endtrans %}</a>
                         </li>
                         {% if is_granted('ROLE_ADMIN') %}
-                        <li><a class="dropdown-item" href="{{ path('admin') }}">{% trans %}Administration{% endtrans %}</a></li>
+                        <li><a class="dropdown-item" href="{{ path('admin') }}"><i class="fas fa-cog"></i> {% trans %}Administration{% endtrans %}</a></li>
                         {% endif %}
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="{{ path('app_logout') }}">{% trans %}Déconnexion{% endtrans %}</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i> {% trans %}Déconnexion{% endtrans %}</a></li>
                     </ul>
                 </li>
                 {% else %}
@@ -60,10 +60,10 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li>
-                        <a class="dropdown-item" href="{{ path('app_login') }}">{% trans %}Connexion{% endtrans %}</a>
+                        <a class="dropdown-item" href="{{ path('app_login') }}"><i class="fas fa-sign-in-alt"></i> {% trans %}Connexion{% endtrans %}</a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="{{ path('app_register') }}">{% trans %}Créer un compte{% endtrans %}</a>
+                        <a class="dropdown-item" href="{{ path('app_register') }}"><i class="fas fa-user-plus"></i> {% trans %}Créer un compte{% endtrans %}</a>
                     </li>
                     </ul>
                 </li>
@@ -86,3 +86,10 @@
         </div>
     </div>
 </nav>
+
+{% for msg in app.session.flashBag.get('message') %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ msg }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
