@@ -1,9 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ site_name }} : {% trans %}A propos{% endtrans %}{% endblock %}
+{% block title %}{{ site_name }} - {% trans %}A propos{% endtrans %}{% endblock %}
 
 {% block body %}
 
-<h1>{% trans %}A propos{% endtrans %}</h1>
+<div class="row d-flex justify-content-center mb-5">
+    <h2>{% trans %}A propos{% endtrans %}</h2>
+    <div class="col-4">
+        <img src="{{ asset('images/about.jpg') }}" class="img-fluid mb-4" alt="A propos">
+    </div>
+    <div class="col">
+        <p>
+            Quibus ita sceleste patratis Paulus cruore perfusus reversusque ad principis castra multos coopertos paene
+            catenis adduxit in squalorem deiectos atque maestitiam, quorum adventu intendebantur eculei uncosque parabat
+            carnifex et tormenta. et ex is proscripti sunt plures actique in exilium alii, non nullos gladii consumpsere
+            poenales. nec enim quisquam facile meminit sub Constantio, ubi susurro tenus haec movebantur, quemquam
+            absolutum.
+        </p>
+        <p>
+            Post haec indumentum regale quaerebatur et ministris fucandae purpurae tortis confessisque pectoralem
+            tuniculam sine manicis textam, Maras nomine quidam inductus est ut appellant Christiani diaconus, cuius
+            prolatae litterae scriptae Graeco sermone ad Tyrii textrini praepositum celerari speciem perurgebant quam
+            autem non indicabant denique etiam idem ad usque discrimen vitae vexatus nihil fateri conpulsus est.
+        </p>
+        <p>
+            Iis igitur est difficilius satis facere, qui se Latina scripta dicunt contemnere. in quibus hoc primum est
+            in quo admirer, cur in gravissimis rebus non delectet eos sermo patrius, cum idem fabellas Latinas ad verbum
+            e Graecis expressas non inviti legant. quis enim tam inimicus paene nomini Romano est, qui Ennii Medeam aut
+            Antiopam Pacuvii spernat aut reiciat, quod se isdem Euripidis fabulis delectari dicat, Latinas litteras
+            oderit?
+        </p>
+        <p>
+            Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma, ingenuos advenas
+            plerique nobilium, ut Homerici bacarum suavitate Lotophagi, humanitatis multiformibus officiis retentabant.
+        </p>
+        <p>
+            Horum adventum praedocti speculationibus fidis rectores militum tessera data sollemni armatos omnes celeri
+            eduxere procursu et agiliter praeterito Calycadni fluminis ponte, cuius undarum magnitudo murorum adluit
+            turres, in speciem locavere pugnandi. neque tamen exiluit quisquam nec permissus est congredi. formidabatur
+            enim flagrans vesania manus et superior numero et ruitura sine respectu salutis in ferrum.
+        </p>
+    </div>
+</div>
 
 {% endblock %}

@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ site_name }} : {% trans %}me contacter{% endtrans %}{% endblock %}
+{% block title %}{{ site_name }} - {% trans %}me contacter{% endtrans %}{% endblock %}
 
 {% block body %}
 
 <div class="row d-flex justify-content-center mb-5">
-    <div class="col">
+    <div class="col-9 pe-4">
         {% for msg in app.session.flashBag.get('successContact') %}
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ msg }}
@@ -48,6 +48,11 @@
         </div>
         {{ form_end(our_form) }}
 
+    </div>
+    <div class="col shadow pt-3">
+        {% block sidebar %}
+            {{ sidebar() }}
+        {% endblock %}
     </div>
 </div>
 

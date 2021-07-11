@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Administration{% endblock %}
+{% block title %}{{ site_name }} - Administration{% endblock %}
 
 {% block body %}
 
@@ -15,14 +15,14 @@
     <div class="col">
         <h4>Catégories</h4>
         <div class="d-grid gap-2">
-            <a class="btn btn-lg btn-primary" href="{{ path('category_index') }}">{% trans %}Liste des Catégories{% endtrans %}</a>
-            <a class="btn btn-lg btn-success" href="{{ path('category_new') }}">{% trans %}Créer une catégorie<{% endtrans %}/a>
+            <a class="btn btn-lg btn-primary" href="{{ path('category_admin_index') }}">{% trans %}Liste des Catégories{% endtrans %}</a>
+            <a class="btn btn-lg btn-success" href="{{ path('category_new') }}">{% trans %}Créer une catégorie{% endtrans %}</a>
         </div>
     </div>
     <div class="col">
         <h4>Tags</h4>
         <div class="d-grid gap-2">
-            <a class="btn btn-lg btn-primary" href="{{ path('tag_index') }}">{% trans %}Liste des Tags{% endtrans %}</a>
+            <a class="btn btn-lg btn-primary" href="{{ path('tag_admin_index') }}">{% trans %}Liste des Tags{% endtrans %}</a>
             <a class="btn btn-lg btn-success" href="{{ path('tag_new') }}">{% trans %}Créer un tag{% endtrans %}</a>
         </div>
     </div>

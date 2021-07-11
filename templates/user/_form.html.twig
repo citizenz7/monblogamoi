@@ -1,6 +1,33 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn btn-sm btn-success">{{ button_label|default('Enregistrer') }}</button> 
-    <button class="btn btn-sm btn-secondary" type="reset">{% trans %}Annuler{% endtrans %}</button> 
-    <a class="btn btn-sm btn-primary" href="{{ path('user_index') }}">{% trans %}Retour à la liste des utilisateurs{% endtrans %}</a>
+    {#{ form_widget(form) }#}
+
+    {{ form_row(form.email) }}
+    {{ form_row(form.prenom) }}
+    {{ form_row(form.nom) }}
+
+    {% if app.request.get('_route') == 'user_edit' %}
+        {% if user.avatar is not empty %}
+            Avatar actuel :<br>
+            <img src="{{ asset('uploads/images/users/' ~ user.avatar) }}" alt="{{ user.prenom }} {{ user.nom }}" class="img-fluid mb-3">
+            <p>
+                <a href="{{ path('user_delete_avatar', {'id': user.id}) }}" class="btn btn-sm btn-danger">Supprimer l'avatar</a>
+            </p>
+        {% else %}
+            <div class="text-white bg-primary p-2 mb-2 text-center">
+                <i class="bi bi-exclamation-lg"></i> {% trans %}Il n'y a aucun avatar pour ce compte. L'avatar par défaut est sélectionné.{% endtrans %}
+            </div>
+            <p>
+                <img src="{{ asset('uploads/images/users/no-image.png')|imagine_filter('user') }}" alt="{{ user.prenom }} {{ user.nom }}" class="img-fluid mb-3">
+            </p>
+        {% endif %}
+    {% endif %}
+
+    {{ form_row(form.avatar) }}
+
+    <div class="mt-4 mb-5">
+        <button class="btn btn-sm btn-success">{{ button_label|default('Enregistrer') }}</button> 
+        <button class="btn btn-sm btn-secondary" type="reset">{% trans %}Annuler{% endtrans %}</button> 
+        <a class="btn btn-sm btn-primary" href="{{ path('user_index') }}">{% trans %}Retour à la liste des utilisateurs{% endtrans %}</a>
+    </div>
 {{ form_end(form) }}
+

@@ -29,6 +29,6 @@
     <div class="mt-4">
         <button class="btn btn-sm btn-success">{{ button_label|default('Créer') }}</button> 
         <button class="btn btn-sm btn-secondary" type="reset">{% trans %}Annuler{% endtrans %}</button> 
-        <a class="btn btn-sm btn-primary" href="{{ path('article_index') }}">{% trans %}Liste des articles{% endtrans %}</a>
+        <a class="btn btn-sm btn-primary" href="{{ path('article_admin_index') }}">{% trans %}Liste des articles{% endtrans %}</a>
     </div>
 {{ form_end(form) }}

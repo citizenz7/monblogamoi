@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% trans %}Tous les articles{% endtrans %}{% endblock %}
+{% block title %}{{ site_name }} - {% trans %}Tous les articles{% endtrans %}{% endblock %}
 
 {% block body %}
 <h2 class="border-bottom mb-4 text-primary">{% trans %}Tous les articles{% endtrans %}</h2>
@@ -14,7 +14,7 @@
                 {{ article.presentation }}
             </p>
             <p>
-                <img src="{{ asset('uploads/images/articles/' ~ article.image) }}" class="img-fluid img-thumbnail float-end article-index-image ms-3 mt-1" alt="{{ article.title }}">
+                <img src="{{ asset('uploads/images/articles/' ~ article.image)|imagine_filter('blog') }}" class="img-fluid img-thumbnail float-end ms-3 mt-1" alt="{{ article.title }}">
                 {{ article.content|slice(0,250)|raw }}...
             </p>
             <a href="{{ path('article_show', {'slug': article.slug}) }}" class="text-decoration-none">

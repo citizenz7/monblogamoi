@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ site_name }} : {% trans %}Créer un compte{% endtrans %}{% endblock %}
+{% block title %}{{ site_name }}- {% trans %}Créer un compte{% endtrans %}{% endblock %}
 
 {% block body %}
 {% for flashError in app.flashes('verify_email_error') %}

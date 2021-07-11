@@ -26,7 +26,7 @@ class UserController extends AbstractController
     /**
      * @Route("/admin/user/new", name="user_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, TranslatorInterface $translator): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -53,6 +53,9 @@ class UserController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
+
+            $message = $translator->trans('Nouvel utilisateur créé avec succès.');
+            $this->addFlash('message', $message);
 
             return $this->redirectToRoute('user_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -102,8 +105,8 @@ class UserController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
 
             $message = $translator->trans('Utilisateur modifié avec succès.');
-
             $this->addFlash('message', $message);
+
             return $this->redirectToRoute('user_show', ['id' => $user->getId()], Response::HTTP_SEE_OTHER);
         }
 
@@ -114,15 +117,43 @@ class UserController extends AbstractController
     }
 
     /**
+     * @Route("/admin/user/{id}/delavatar", name="user_delete_avatar", methods={"GET"})
+     */
+    public function deleteAvatar(Request $request, User $user, TranslatorInterface $translator): Response
+    {
+        // Delete user's avatar in folder
+        $avatar = $user->getAvatar();
+        if($avatar) {
+            $nomAvatar = $this->getParameter("users_images_directory") . '/' . $avatar;
+            if(file_exists($nomAvatar)) {
+                unlink($nomAvatar);
+            }
+        }
+
+        // Set avatar to "nothing" in DB
+        $user->setAvatar('');       
+        $this->getDoctrine()->getManager()->flush();
+
+        // Redirect to user edit page with translated message
+        $message = $translator->trans('L\'avatar du profil a été supprimé avec succès.');
+        $this->addFlash('message', $message);
+
+        return $this->redirectToRoute('user_edit', ['id' => $user->getId()]);
+    }
+
+    /**
      * @Route("/user/{id}", name="user_delete", methods={"POST"})
      */
-    public function delete(Request $request, User $user): Response
+    public function delete(Request $request, User $user, TranslatorInterface $translator): Response
     {
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($user);
             $entityManager->flush();
         }
+
+        $message = $translator->trans('Le compte a été supprimé avec succès.');
+        $this->addFlash('message', $message);
 
         return $this->redirectToRoute('user_index', [], Response::HTTP_SEE_OTHER);
     }

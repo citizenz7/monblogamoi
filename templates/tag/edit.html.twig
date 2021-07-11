@@ -1,13 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% trans %}Modifier le tag{% endtrans %}{% endblock %}
+{% block title %}{{ site_name }} - {% trans %}Modifier le tag{% endtrans %}{% endblock %}
 
 {% block body %}
     <h2>{% trans %}Modifier le tag{% endtrans %}</h2>
 
-    {{ include('tag/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('tag/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('tag_index') }}">{% trans %}Liste des Tags{% endtrans %}</a>
-
-    {{ include('tag/_delete_form.html.twig') }}
 {% endblock %}

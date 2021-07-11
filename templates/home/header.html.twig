@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container">
         <a class="h3 text-decoration-none me-3 text-white" href="{{ path('home') }}">
-            <img src="{{ asset('images/logo.png') }}" alt="{{ site_name }}" class="img-fluid header-logo">
+            <img src="{{ asset('images/logo.png')|imagine_filter('headerlogo') }}" alt="{{ site_name }}" class="img-fluid">
             {{ site_name }}
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -72,7 +72,7 @@
                     {% for locale in locales %}
                         {% if locale != app.request.locale %}
                             <li>
-                                <a class="nav-link" href="{{ path('change_locale', {'locale': locale}) }}" class="nav-link">
+                                <a class="nav-link" href="{{ path('change_locale', {'locale': locale}) }}">
                                     <img src="{{ asset('images/'~locale~'.png') }}" alt="{{ locale }}" class="img-fluid">
                                 </a>
                             </li>

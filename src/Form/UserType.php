@@ -19,7 +19,7 @@ class UserType extends AbstractType
             ->add('email', EmailType::class, [
                 'label' => 'Adresse e-mail',
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control mb-3'
                 ]
             ])
             //->add('roles')

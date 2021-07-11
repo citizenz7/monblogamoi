@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% trans %}Tag{% endtrans %}{% endblock %}
+{% block title %}{{ site_name }} - {% trans %}Tag{% endtrans %}{% endblock %}
 
 {% block body %}
     <h2 class="mb-4 border-bottom">{% trans %}Tag{% endtrans %} : {{ tag.title }}</h2>

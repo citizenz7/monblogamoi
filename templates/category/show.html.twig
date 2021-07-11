@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% trans %}Catégorie{% endtrans %}{% endblock %}
+{% block title %}{{ site_name }} - {% trans %}Catégorie{% endtrans %}{% endblock %}
 
 {% block body %}
     <h2 class="mb-4 border-bottom">{% trans %}Catégorie{% endtrans %} : {{ category.title }} ({{ category.articles|length }})</h2>
@@ -11,7 +11,7 @@
             {% for c in category.articles %}
                 <div class="row py-1">
                     <div class="col border-bottom mb-3">
-                        <img src="{{ asset('uploads/images/articles/') ~ c.image }}" class="img-fluid float-start category-image me-3 mt-2" alt="{{ c.title }}">
+                        <img src="{{ asset('uploads/images/articles/' ~ c.image)|imagine_filter('catarticle') }}" class="img-fluid float-start me-3 mt-2" alt="{{ c.title }}">
                         <a href="{{ path('article_show', { 'slug': c.slug }) }}" class="text-decoration-none lead">
                             {{ c.title }}
                         </a>

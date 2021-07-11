@@ -499,6 +499,18 @@
         <source>Mon compte</source>
         <target>__Mon compte</target>
       </trans-unit>
+      <trans-unit id="OuRTjZ6" resname="Etes-vous certain(e) de vouloir supprimer cet item ?">
+        <source>Etes-vous certain(e) de vouloir supprimer cet item ?</source>
+        <target>__Etes-vous certain(e) de vouloir supprimer cet item ?</target>
+      </trans-unit>
+      <trans-unit id="3Oy2Ql6" resname="Créer une catégorie">
+        <source>Créer une catégorie</source>
+        <target>__Créer une catégorie</target>
+      </trans-unit>
+      <trans-unit id="3Oy2Ql7" resname="J'accepte que mes informations soient stockées en base de données. J'ai bien noté qu'en aucun cas ces données ne seront cédées à des tiers.">
+        <source>J'accepte que mes informations soient stockées en base de données. J'ai bien noté qu'en aucun cas ces données ne seront cédées à des tiers.</source>
+        <target>__J'accepte que mes informations soient stockées en base de données. J'ai bien noté qu'en aucun cas ces données ne seront cédées à des tiers.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

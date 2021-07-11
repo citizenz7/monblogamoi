@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ user.prenom }} {{ user.nom }}{% endblock %}
+{% block title %}{{ site_name }} - {{ user.prenom }} {{ user.nom }}{% endblock %}
 
 {% block body %}
 
@@ -48,7 +48,7 @@
             </tr>
             <tr>
                 <th>{% trans %}Avatar{% endtrans %}</th>
-                <td><img src="{{ asset('uploads/images/users/' ~ user.avatar) }}" alt="{{ user.prenom }} {{ user.nom }}" class="img-fluid" style="max-width: 100px; width: 100%;"></td>
+                <td><img src="{{ asset('uploads/images/users/' ~ user.avatar)|imagine_filter('user') }}" alt="{{ user.prenom }} {{ user.nom }}" class="img-fluid"></td>
             </tr>
             <tr>
                 <th>{% trans %}Enregistré le{% endtrans %}</th>
@@ -59,8 +59,8 @@
 
     <div class="d-flex justify-content-between align-items-center mt-5">
         <span>
-            <a class="btn btn-success" href="{{ path('user_edit', {'id': user.id}) }}">{% trans %}Modifier le profil{% endtrans %}</a>
-            <button type="reset" class="btn btn-secondary">{% trans %}Annuler{% endtrans %}</button>
+            <a class="btn btn-sm btn-success" href="{{ path('user_edit', {'id': user.id}) }}">{% trans %}Modifier le profil{% endtrans %}</a>
+            <button type="reset" class="btn btn-sm btn-secondary">{% trans %}Annuler{% endtrans %}</button>
         </span>
         <span>
             {{ include('user/_delete_form.html.twig') }}

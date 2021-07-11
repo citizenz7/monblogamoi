@@ -2,8 +2,7 @@
 <div class="mb-4">
     {% for a in articles %}
     <div class="clearfix small my-3">
-        <img src="{{ asset('uploads/images/articles/' ~ a.image) }}" alt="{{ a.title }}"
-            class="img-fluid float-start article-image me-2">
+        <img src="{{ asset('uploads/images/articles/' ~ a.image)|imagine_filter('sidebar') }}" alt="{{ a.title }}" class="img-fluid float-start me-2">
         <a href="{{ path('article_show', {'slug': a.slug}) }}"
             class="text-decoration-none small">{{ a.title|slice(0,30) }}...</a>
         <br>

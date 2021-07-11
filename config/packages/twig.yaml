@@ -5,7 +5,7 @@ twig:
         locales: '%app.locales%'
         site_name: MonBlogAMoi
         site_url: monblogamoi.com
-        site_utl_full: https://wwwmonblogamoi.com
+        site_url_full: https://www.monblogamoi.com
         site_email: contact@monblogamoi.com
         facebook: 
         twitter: 
@@ -13,9 +13,10 @@ twig:
         youtube: 
         instagram: 
         github: 
-        site_author: citizenz
-        site_version: 0.2.1
+        site_author: citizenz7
+        site_version: 0.9.1
         site_slogan: Introiit cum quaedam festinatis Caesare diu relationibus sed abditus nec venisset nec supervacua multa relationibus videri sed addens publicum abditus.
+        site_keywords: linux opensource debian ubuntu arch manjaro deepin gnu free
 
 when@test:
     twig:

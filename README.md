@@ -71,10 +71,10 @@ Si vous ajoutez une nouvelle langue, n'oubliez pas de mettre à jour config/serv
 * Connectez vous avec ce nouveau compte (/login) puis rendez-vous sur le panneau d'administration (/admin)
 * Créez des catégories (/admin/category/new)
 * Créez un article. Les tags seront automatiquement créés quand vous les écrirez pour la première fois en faisant un espace après chaque tag (SELECT2 JQuery plugin). Vous les retrouverez dans la liste déroulante.
+* Modifiez/adaptez la page `A propos`
 
 # TODO
-* bundle LippImagine (redimensionnement des images)
-* Catégories articles sur page BLOG
-* SEO
-* amélioration du CSS des template
-* vérification du titre de chaque template
+* Catégories et Tags index page avec cards
+* Colonnes catégories articles sur page BLOG
+* Messages flash
+* traduction messages flash dans Controller + flash bags dans templates
