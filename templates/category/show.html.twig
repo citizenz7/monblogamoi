@@ -3,11 +3,14 @@
 {% block title %}{{ site_name }} - {% trans %}Catégorie{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h2 class="mb-4 border-bottom">{% trans %}Catégorie{% endtrans %} : {{ category.title }} ({{ category.articles|length }})</h2>
+
+    <div class="">
+        Index des catégories</a>
+    </div>
 
     <div class="row">
         <div class="col-9 pe-5">
-            <h5 class="border-bottom mb-3">{% trans %}Les articles de la catégorie{% endtrans %} :</h5>
+            <h2 class="mb-4 border-bottom">{% trans %}Catégorie{% endtrans %} : {{ category.title }} ({{ category.articles|length }})</h2>
             {% for c in category.articles %}
                 <div class="row py-1">
                     <div class="col border-bottom mb-3">

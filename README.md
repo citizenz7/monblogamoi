@@ -78,3 +78,4 @@ Si vous ajoutez une nouvelle langue, n'oubliez pas de mettre à jour config/serv
 * Colonnes catégories articles sur page BLOG
 * Messages flash
 * traduction messages flash dans Controller + flash bags dans templates
+* pages d'erreurs personnalisées

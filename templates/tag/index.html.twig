@@ -3,32 +3,42 @@
 {% block title %}{{ site_name }} - {% trans %}Liste des tags{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h2>{% trans %}Liste des tags{% endtrans %}</h2>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>{% trans %}Titre{% endtrans %}</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for tag in tags %}
-            <tr>
-                <td>{{ tag.id }}</td>
-                <td>{{ tag.title }}</td>
-                <td>
-                    <a href="{{ path('tag_show', {'slug': tag.slug}) }}">{% trans %}Voir{% endtrans %}</a>
-                    <a href="{{ path('tag_edit', {'slug': tag.slug}) }}">{% trans %}Modifier{% endtrans %}</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">{% trans %}Il n'y aucun enregistrement.{% endtrans %}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="row pt-4 pb-5">
+        <div class="col-9 pe-4">
+            <h2>{% trans %}Liste des tags{% endtrans %}</h2>
+            <div class="row row-cols-1 row-cols-md-2 g-4 mt-1">
+                {% for tag in tags %}
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title border-bottom pb-1">
+                                    <a href="{{ path('tag_show', {'slug': tag.slug}) }}" class="text-dark">{{ tag.title }}</a>
+                                </h5>
+                                <p class="card-text">
+                                    <ul class="list-group list-group-flush">
+                                        {% for t in tag.articles %}
+                                            <li class="list-group-item">
+                                                <i class="fas fa-caret-right"></i> 
+                                                <a href="{{ path('article_show', { 'slug': t.slug }) }}">{{ t.title }}</a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    Il n'y a aucun enregistrement.
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="col-3">
+            {% block sidebar %}
+                {{ sidebar() }}
+            {% endblock %}
+        </div>
+    </div>
 
 {% endblock %}

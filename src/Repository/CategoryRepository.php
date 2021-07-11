@@ -44,7 +44,7 @@ class CategoryRepository extends ServiceEntityRepository
         // returns an array of Product objects
         return $query->getResult();
     }
-    
+   
     // /**
     //  * @return Category[] Returns an array of Category objects
     //  */
