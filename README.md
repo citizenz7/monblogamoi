@@ -39,17 +39,22 @@ Si vous ajoutez une nouvelle langue, n'oubliez pas de mettre à jour config/serv
 * User
 ### Pages
 * home
-* contact
+* article index (Blog)
 * article single
 * categories index
 * category single
 * tags index
 * tag single
 * user profile
-* admin section et dashboard
-* Rss
+* admin panel
+* contact
+* rss
+* cgu
+* à propos
 * login
 * registration
+* search
+* sitemap.xml
 
 ## Pour initialiser le projet :
 * clonez le repository: `git clone https://github.com/citizenz7/blog.git`

@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Tag;
 use App\Entity\Article;
 use App\Entity\Category;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -34,7 +33,6 @@ class HomeController extends AbstractController
             'current_menu' => 'Accueil',
         ]);
     }
-
 
     /**
      * @Route("/apropos", name="apropos")
