@@ -4,7 +4,16 @@
 
 {% block body %}
 
-    <h2>{% trans %}Modifier votre profil{% endtrans %}</h2>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>{% trans %}Modifier votre profil{% endtrans %}</h2>
+
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ path('admin') }}">Admin index</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Modifier votre profil</li>
+            </ol>
+        </nav>
+    </div>
 
     {{ include('user/_form.html.twig', {'button_label': 'Modifier'}) }}
 

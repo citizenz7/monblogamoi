@@ -1,42 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ site_name }} - Administration{% endblock %}
+{% block title %}{{ site_name }} - {% trans %}Administration{% endtrans %}{% endblock %}
 
 {% block body %}
 
-<div class="row mb-4 pb-2">
-    <div class="col">
-        <h4>{% trans %}Articles{% endtrans %}</h4>
-        <div class="d-grid gap-2">
-            <a class="btn btn-lg btn-primary" href="{{ path('article_admin_index') }}">{% trans %}Liste des Articles{% endtrans %}</a>
-            <a class="btn btn-lg btn-success" href="{{ path('article_new') }}">{% trans %}Créer un article{% endtrans %}</a>
+    <div class="row mb-4">
+
+        <div class="col-3 py-3 rounded border">
+            <h4 class="bg-light rounded p-2">{{ site_name }}</h4>
+            <hr>
+
+            <h5>{% trans %}Articles{% endtrans %}</h5>
+                <div class="d-grid gap-2 mb-3">
+                    <a href="{{ path('article_admin_index') }}" class="btn btn-primary"><i class="fas fa-list"></i> {% trans %}Liste des articles{% endtrans %}</a>
+                    <a href="{{ path('article_new') }}" class="btn btn-success"><i class="fas fa-plus"></i> {% trans %}Créer un article{% endtrans %}</a>
+                </div>
+            <h5>{% trans %}Catégories{% endtrans %}</h5>
+                <div class="d-grid gap-2 mb-3">
+                    <a href="{{ path('category_admin_index') }}" class="btn btn-info"><i class="fas fa-list"></i> {% trans %}Liste des catégories{% endtrans %}</a>
+                    <a href="{{ path('category_new') }}" class="btn btn-success"><i class="fas fa-plus"></i> {% trans %}Créer une catégorie{% endtrans %}</a>
+                </div>
+            <h5>{% trans %}Tags{% endtrans %}</h5>
+                <div class="d-grid gap-2 mb-3">
+                    <a href="{{ path('tag_admin_index') }}" class="btn btn-warning"><i class="fas fa-list"></i> {% trans %}Liste des tags{% endtrans %}</a>
+                    <a href="{{ path('tag_new') }}" class="btn btn-success"><i class="fas fa-plus"></i> {% trans %}Créer un tag{% endtrans %}</a>
+                </div>
+            <h5>{% trans %}Utilisateurs{% endtrans %}</h5>
+                <div class="d-grid gap-2 mb-3">
+                    <a href="{{ path('user_index') }}" class="btn btn-secondary"><i class="fas fa-list"></i> {% trans %}Liste des utilisateurs{% endtrans %}</a>
+                </div>
         </div>
-    </div>
-    <div class="col">
-        <h4>Catégories</h4>
-        <div class="d-grid gap-2">
-            <a class="btn btn-lg btn-primary" href="{{ path('category_admin_index') }}">{% trans %}Liste des Catégories{% endtrans %}</a>
-            <a class="btn btn-lg btn-success" href="{{ path('category_new') }}">{% trans %}Créer une catégorie{% endtrans %}</a>
-        </div>
-    </div>
-    <div class="col">
-        <h4>Tags</h4>
-        <div class="d-grid gap-2">
-            <a class="btn btn-lg btn-primary" href="{{ path('tag_admin_index') }}">{% trans %}Liste des Tags{% endtrans %}</a>
-            <a class="btn btn-lg btn-success" href="{{ path('tag_new') }}">{% trans %}Créer un tag{% endtrans %}</a>
-        </div>
-    </div>
-    <div class="col">
-        <h4>Utilisateurs</h4>
-        <div class="d-grid gap-2">
-            <a class="btn btn-lg btn-primary" href="{{ path('user_index') }}">{% trans %}Liste des Utilisateurs{% endtrans %}</a>
+
+        <div class="col-9 ps-3">
+            <h2 class="bg-light rounded p-2">{% trans %}Panneau d'Administration{% endtrans %}</h2>
+            <hr>
+
+            {% block admin %}
+                {{ admin() }}
+            {% endblock %}
 
         </div>
-    </div>
-</div>
 
-{% block admin %}
-    {{ admin() }}
-{% endblock %}
+    </div>
 
 {% endblock %}

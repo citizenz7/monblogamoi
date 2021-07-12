@@ -77,6 +77,7 @@ class adminExtension extends AbstractExtension
     {
         $articles = $this->articleRepository->popularArticles();
         $articlesAll = $this->articleRepository->findAll();
+        $lastArticles = $this->articleRepository->lastArticles();
         $categories = $this->categoryRepository->sidebarCategories();
         $categoriesAll = $this->categoryRepository->sidebarCategoriesAll();
         $users = $this->userRepository->findAll();
@@ -88,7 +89,7 @@ class adminExtension extends AbstractExtension
 
         try {
             return $this->twig->render('admin/stats.html.twig',
-                compact('articles', 'articlesAll', 'categories', 'categoriesAll', 'users', 'views', 'tags', 'commentsAll', 'lastComments'));
+                compact('articles', 'articlesAll', 'lastArticles', 'categories', 'categoriesAll', 'users', 'views', 'tags', 'commentsAll', 'lastComments'));
         } 
         catch (LoaderError | RuntimeError | SyntaxError $e) {
         }

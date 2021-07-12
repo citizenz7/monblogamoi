@@ -40,6 +40,21 @@ class ArticleRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    // 5 last articles
+    public function lastArticles(): array
+    {
+        return $this->createQueryBuilder('a')
+            //->andWhere('a.exampleField = :val')
+            //->setParameter('val', $value)
+            //->andWhere('a.is_active = true')
+            ->orderBy('a.id', 'DESC')
+            ->setMaxResults(5)
+            ->select('a.title', 'a.slug', 'a.created_at', 'a.image', 'a.views')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // 3 most popular last articles (by views)
     /**
     * @return Article[] Returns an array of Articles objects

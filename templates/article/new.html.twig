@@ -7,7 +7,17 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{% trans %}Créer un nouvel article{% endtrans %}</h1>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>{% trans %}Créer un nouvel article{% endtrans %}</h2>
+
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ path('admin') }}">Admin index</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Créer un nouvel article</li>
+            </ol>
+        </nav>
+    </div>
 
     {{ include('article/_form.html.twig') }}
 

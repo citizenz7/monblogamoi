@@ -99,6 +99,10 @@
         <source>Posté le</source>
         <target>__Posté le</target>
       </trans-unit>
+      <trans-unit id="C_wb2uH" resname="Maj le">
+        <source>Maj le</source>
+        <target>__Maj le</target>
+      </trans-unit>
       <trans-unit id="ydnSxL6" resname="par">
         <source>par</source>
         <target>__par</target>
@@ -507,9 +511,125 @@
         <source>Créer une catégorie</source>
         <target>__Créer une catégorie</target>
       </trans-unit>
-      <trans-unit id="3Oy2Ql7" resname="J'accepte que mes informations soient stockées en base de données. J'ai bien noté qu'en aucun cas ces données ne seront cédées à des tiers.">
+      <trans-unit id="lFMHjCK" resname="J'accepte que mes informations soient stockées en base de données. J'ai bien noté qu'en aucun cas ces données ne seront cédées à des tiers.">
         <source>J'accepte que mes informations soient stockées en base de données. J'ai bien noté qu'en aucun cas ces données ne seront cédées à des tiers.</source>
         <target>__J'accepte que mes informations soient stockées en base de données. J'ai bien noté qu'en aucun cas ces données ne seront cédées à des tiers.</target>
+      </trans-unit>
+      <trans-unit id="zw4z6Fe" resname="L'article a été créé avec succès.">
+        <source>L'article a été créé avec succès.</source>
+        <target>__L'article a été créé avec succès.</target>
+      </trans-unit>
+      <trans-unit id="vz5qAa2" resname="Le message a été modifié avec succès.">
+        <source>Le message a été modifié avec succès.</source>
+        <target>__Le message a été modifié avec succès.</target>
+      </trans-unit>
+      <trans-unit id="ZtaeB1m" resname="L'image de l'article a été supprimée avec succès.">
+        <source>L'image de l'article a été supprimée avec succès.</source>
+        <target>__L'image de l'article a été supprimée avec succès.</target>
+      </trans-unit>
+      <trans-unit id="aulsR18" resname="L'article a été supprimé avec succès.">
+        <source>L'article a été supprimé avec succès.</source>
+        <target>__L'article a été supprimé avec succès.</target>
+      </trans-unit>
+      <trans-unit id="QsPFoVb" resname="Catégorie créée avec succès.">
+        <source>Catégorie créée avec succès.</source>
+        <target>__Catégorie créée avec succès.</target>
+      </trans-unit>
+      <trans-unit id="tgpH0y3" resname="Catégorie modifiée avec succès.">
+        <source>Catégorie modifiée avec succès.</source>
+        <target>__Catégorie modifiée avec succès.</target>
+      </trans-unit>
+      <trans-unit id="hpSmBg7" resname="Catégorie supprimée avec succès.">
+        <source>Catégorie supprimée avec succès.</source>
+        <target>__Catégorie supprimée avec succès.</target>
+      </trans-unit>
+      <trans-unit id="lMbApNa" resname="Votre adresse e-mail a été vérifiée avec succès.">
+        <source>Votre adresse e-mail a été vérifiée avec succès.</source>
+        <target>__Votre adresse e-mail a été vérifiée avec succès.</target>
+      </trans-unit>
+      <trans-unit id="RKCxVeA" resname="Le tag a été créé avec succès.">
+        <source>Le tag a été créé avec succès.</source>
+        <target>__Le tag a été créé avec succès.</target>
+      </trans-unit>
+      <trans-unit id="wO_IdSJ" resname="Le tag a été modifié avec succès.">
+        <source>Le tag a été modifié avec succès.</source>
+        <target>__Le tag a été modifié avec succès.</target>
+      </trans-unit>
+      <trans-unit id="J8sYgGk" resname="Le tag a été supprimé avec succès.">
+        <source>Le tag a été supprimé avec succès.</source>
+        <target>__Le tag a été supprimé avec succès.</target>
+      </trans-unit>
+      <trans-unit id="J5G.aJZ" resname="Nouvel utilisateur créé avec succès.">
+        <source>Nouvel utilisateur créé avec succès.</source>
+        <target>__Nouvel utilisateur créé avec succès.</target>
+      </trans-unit>
+      <trans-unit id="6Iejehy" resname="L'avatar du profil a été supprimé avec succès.">
+        <source>L'avatar du profil a été supprimé avec succès.</source>
+        <target>__L'avatar du profil a été supprimé avec succès.</target>
+      </trans-unit>
+      <trans-unit id="gkRRC9P" resname="Le compte a été supprimé avec succès.">
+        <source>Le compte a été supprimé avec succès.</source>
+        <target>__Le compte a été supprimé avec succès.</target>
+      </trans-unit>
+      <trans-unit id="IFz8pPx" resname="Votre message a bien été envoyé ! Merci ! Je vous répondrai dès que possible.">
+        <source>Votre message a bien été envoyé ! Merci ! Je vous répondrai dès que possible.</source>
+        <target>__Votre message a bien été envoyé ! Merci ! Je vous répondrai dès que possible.</target>
+      </trans-unit>
+      <trans-unit id="fSmIyed" resname="erreur">
+        <source>erreur</source>
+        <target>__erreur</target>
+      </trans-unit>
+      <trans-unit id="ueG2YkL" resname="ERREUR">
+        <source>ERREUR</source>
+        <target>__ERREUR</target>
+      </trans-unit>
+      <trans-unit id=".J.ma97" resname="Cliquez sur le bouton ci-dessous">
+        <source>Cliquez sur le bouton ci-dessous</source>
+        <target>__Cliquez sur le bouton ci-dessous</target>
+      </trans-unit>
+      <trans-unit id="A0kfbRi" resname="Retour à la page d'accueil">
+        <source>Retour à la page d'accueil</source>
+        <target>__Retour à la page d'accueil</target>
+      </trans-unit>
+      <trans-unit id="qjP9Mx6" resname="Accès interdit !">
+        <source>Accès interdit !</source>
+        <target>__Accès interdit !</target>
+      </trans-unit>
+      <trans-unit id="q2ZaIdZ" resname="&quot;Vous ne passerez pas !&quot;">
+        <source>"Vous ne passerez pas !"</source>
+        <target>__"Vous ne passerez pas !"</target>
+      </trans-unit>
+      <trans-unit id="j1KimQe" resname="Veuillez cliquer sur le bouton ci-dessous">
+        <source>Veuillez cliquer sur le bouton ci-dessous</source>
+        <target>__Veuillez cliquer sur le bouton ci-dessous</target>
+      </trans-unit>
+      <trans-unit id="vDj_lX9" resname="UH OH! Vous êtes perdu ?!!">
+        <source>UH OH! Vous êtes perdu ?!!</source>
+        <target>__UH OH! Vous êtes perdu ?!!</target>
+      </trans-unit>
+      <trans-unit id="4w6LEFC" resname="La page que vous recherchez n'existe pas. Je ne comprends même pas comment vous êtes arrivé ici ! :D">
+        <source>La page que vous recherchez n'existe pas. Je ne comprends même pas comment vous êtes arrivé ici ! :D</source>
+        <target>__La page que vous recherchez n'existe pas. Je ne comprends même pas comment vous êtes arrivé ici ! :D</target>
+      </trans-unit>
+      <trans-unit id="._YxwAI" resname="Il n'y a aucun avatar pour ce compte. L'avatar par défaut est sélectionné.">
+        <source>Il n'y a aucun avatar pour ce compte. L'avatar par défaut est sélectionné.</source>
+        <target>__Il n'y a aucun avatar pour ce compte. L'avatar par défaut est sélectionné.</target>
+      </trans-unit>
+      <trans-unit id="qxVGOZo" resname="Panneau d'Administration">
+        <source>Panneau d'Administration</source>
+        <target>__Panneau d'Administration</target>
+      </trans-unit>
+      <trans-unit id="NM9uIeH" resname="Derniers articles">
+        <source>Derniers articles</source>
+        <target>__Derniers articles</target>
+      </trans-unit>
+      <trans-unit id="qlyzBYG" resname="Derniers commentaires">
+        <source>Derniers commentaires</source>
+        <target>__Derniers commentaires</target>
+      </trans-unit>
+      <trans-unit id="7uB5eFJ" resname="Conditions Générales d'Utilisation (C.G.U.)">
+        <source>Conditions Générales d'Utilisation (C.G.U.)</source>
+        <target>__Conditions Générales d'Utilisation (C.G.U.)</target>
       </trans-unit>
     </body>
   </file>

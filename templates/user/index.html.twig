@@ -17,14 +17,14 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>{% trans %}Nom{% endtrans %}</th>
-                <th>{% trans %}Prenom{% endtrans %}</th>
-                <th>{% trans %}Pseudo{% endtrans %}</th>
-                <th>{% trans %}Email{% endtrans %}</th>
-                <th>Roles</th>
-                <th>{% trans %}Compte vérifié{% endtrans %}</th>
-                <th>{% trans %}Créé le{% endtrans %}</th>
+                <th>{{ knp_pagination_sortable(users, 'Id', 'p.id') }}</th>
+                <th>{{ knp_pagination_sortable(users, 'Nom'|trans({}, 'messages'), 'p.nom') }}</th>
+                <th>{{ knp_pagination_sortable(users, 'Prénom'|trans({}, 'messages'), 'p.prenom') }}</th>
+                <th>{{ knp_pagination_sortable(users, 'Pseudo'|trans({}, 'messages'), 'p.nick') }}</th>
+                <th>{{ knp_pagination_sortable(users, 'Email'|trans({}, 'messages'), 'p.email') }}</th>
+                <th>{{ knp_pagination_sortable(users, 'Role'|trans({}, 'messages'), 'p.role') }}</th>
+                <th>{{ knp_pagination_sortable(users, 'Compte vérifié'|trans({}, 'messages'), 'p.is_verified') }}</th>
+                <th>{{ knp_pagination_sortable(users, 'Créé le'|trans({}, 'messages'), 'p.created_at') }}</th>
                 <th width="11%"></th>
                 <th width="4%"></th>
             </tr>

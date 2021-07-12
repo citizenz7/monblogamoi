@@ -3,7 +3,17 @@
 {% block title %}{{ site_name }} - {% trans %}Créer une nouvelle catégorie{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>{% trans %}Créer une nouvelle catégorie{% endtrans %}</h1>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>{% trans %}Créer une nouvelle catégorie{% endtrans %}</h2>
+
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ path('admin') }}">Admin index</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Créer une nouvelle catégorie</li>
+            </ol>
+        </nav>
+    </div>
 
     {{ include('category/_form.html.twig') }}
 

@@ -17,8 +17,8 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>{% trans %}Titre{% endtrans %}</th>
+                <th>{{ knp_pagination_sortable(tags, 'Id', 'p.id') }}</th>
+                <th>{{ knp_pagination_sortable(tags, 'Titre'|trans({}, 'messages'), 'p.title') }}</th>
                 <th width="11%"></th>
                 <th width="4%"></th>
             </tr>

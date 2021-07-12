@@ -8,19 +8,20 @@
 
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ path('admin') }}">Admin index</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Liste des articles</li>
+                <li class="breadcrumb-item"><a href="{{ path('admin') }}">{% trans %}Admin index{% endtrans %}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{% trans %}Liste des articles{% endtrans %}</li>
             </ol>
         </nav>
     </div>
 
+    
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>{% trans %}Titre{% endtrans %}</th>
-                <th width="15%">{% trans %}Posté le{% endtrans %}</th>
-                <th width="15%">{% trans %}Modifié le{% endtrans %}</th>
+                <th>{{ knp_pagination_sortable(articles, 'Id', 'p.id') }}</th>
+                <th>{{ knp_pagination_sortable(articles, 'Titre'|trans({}, 'messages'), 'p.title') }}</th>
+                <th width="15%">{{ knp_pagination_sortable(articles, 'Posté le'|trans({}, 'messages'), 'p.created_at') }}</th>
+                <th width="15%">{{ knp_pagination_sortable(articles, 'Maj le'|trans({}, 'messages'), 'p.updated_at') }}</th>
                 <th width="11%"></th>
                 <th></th>
             </tr>
@@ -30,10 +31,10 @@
             <tr>
                 <td>{{ article.id }}</td>
                 <td>{{ article.title }}</td>
-                <td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ article.createdAt|format_datetime('medium', 'short') }}</td>
                 <td>
                     {% if article.updatedAt %}
-                        {{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}
+                        {{ article.updatedAt|format_datetime('medium', 'short') }}
                     {% endif %}
                 </td>
                 <td>

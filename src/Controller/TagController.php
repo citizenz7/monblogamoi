@@ -6,6 +6,7 @@ use App\Entity\Tag;
 use App\Form\TagType;
 use App\Repository\TagRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,10 +29,20 @@ class TagController extends AbstractController
     /**
      * @Route("/admin/tag", name="tag_admin_index", methods={"GET"})
      */
-    public function indexAdmin(TagRepository $tagRepository): Response
+    public function indexAdmin(TagRepository $tagRepository, Request $request, PaginatorInterface $paginator): Response
     {
+        $em = $this->getDoctrine()->getManager();
+        $dql = "SELECT p FROM App:Tag p ORDER BY p.id DESC";
+        $donnees = $em->createQuery($dql);
+
+        $tags = $paginator->paginate(
+            $donnees, // Requête contenant les données à paginer (ici nos articles)
+            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+            5 // Nombre de résultats par page
+        );
+
         return $this->render('tag/index.admin.html.twig', [
-            'tags' => $tagRepository->findAll(),
+            'tags' => $tags
         ]);
     }
 
