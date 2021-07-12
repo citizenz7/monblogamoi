@@ -1,7 +1,7 @@
 # MONBLOGAMOI
 `MONBLOGAMOI` est un projet de blog entièrement basé sur le framework PHP Symfony 5.
 
-Version 0.9.3 (en cours de développement)
+Version 1.0.1
 
 ## Template
 Entièrement basé sur Bootsrap 5 (+ CSS/JS)
@@ -74,5 +74,4 @@ Si vous ajoutez une nouvelle langue, n'oubliez pas de mettre à jour config/serv
 * Modifiez/adaptez la page `A propos`
 
 # TODO
-* translation EN
 * Diminuer le nombre de queries SQL
