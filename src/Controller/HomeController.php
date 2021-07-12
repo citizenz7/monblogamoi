@@ -23,6 +23,7 @@ class HomeController extends AbstractController
         $articles = $this->getDoctrine()->getRepository(Article::class)->findBy([],['created_at' => 'desc'], 4, 1);
 
         $categories = $this->getDoctrine()->getRepository(Category::class)->findBy([],['title' => 'desc']);
+        
         $tags = $this->getDoctrine()->getRepository(Tag::class)->findBy([],['title' => 'desc']);
         
         return $this->render('home/index.html.twig', [

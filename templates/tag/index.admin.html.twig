@@ -14,7 +14,7 @@
         </nav>
     </div>
 
-    <table class="table">
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th>{{ knp_pagination_sortable(tags, 'Id', 'p.id') }}</th>
@@ -43,5 +43,9 @@
         {% endfor %}
         </tbody>
     </table>
+
+    <div class="pagination justify-content-center px-2 mt-5">
+        {{ knp_pagination_render(tags) }}
+    </div>
 
 {% endblock %}

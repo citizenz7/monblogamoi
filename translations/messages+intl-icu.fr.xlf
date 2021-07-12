@@ -99,7 +99,7 @@
         <source>Posté le</source>
         <target>Posté le</target>
       </trans-unit>
-      <trans-unit id="C_wb2uH" resname="Maj le">
+      <trans-unit id="G2fuMZQ" resname="Maj le">
         <source>Maj le</source>
         <target>Maj le</target>
       </trans-unit>
@@ -222,10 +222,6 @@
       <trans-unit id="GLmganW" resname="Liste des Catégories">
         <source>Liste des Catégories</source>
         <target>Liste des Catégories</target>
-      </trans-unit>
-      <trans-unit id="M178ccy" resname="Liste des catégroies">
-        <source>Liste des catégroies</source>
-        <target>Liste des catégroies</target>
       </trans-unit>
       <trans-unit id="sZJyxq1" resname="Titre&lt;">
         <source>Titre&lt;</source>
@@ -630,6 +626,34 @@
       <trans-unit id="7uB5eFJ" resname="Conditions Générales d'Utilisation (C.G.U.)">
         <source>Conditions Générales d'Utilisation (C.G.U.)</source>
         <target>Conditions Générales d'Utilisation (C.G.U.)</target>
+      </trans-unit>
+      <trans-unit id="FHNqLrn" resname="Role">
+        <source>Role</source>
+        <target>Role</target>
+      </trans-unit>
+      <trans-unit id="A_rMhxZ" resname="Admin index">
+        <source>Admin index</source>
+        <target>Admin index</target>
+      </trans-unit>
+      <trans-unit id="CpBAdjn" resname="Oui">
+        <source>Oui</source>
+        <target>Oui</target>
+      </trans-unit>
+      <trans-unit id="f2JJawy" resname="Non">
+        <source>Non</source>
+        <target>Non</target>
+      </trans-unit>
+      <trans-unit id="GSEYiio" resname="Avatar actuel :">
+        <source>Avatar actuel :</source>
+        <target>Avatar actuel :</target>
+      </trans-unit>
+      <trans-unit id="IXNCvrH" resname="Supprimer l'avatar">
+        <source>Supprimer l'avatar</source>
+        <target>Supprimer l'avatar</target>
+      </trans-unit>
+      <trans-unit id=".jYtjjY" resname="Merci d'utiliser le formulaire ci-dessous pour me contacter. Je vous répondrai dès que possible.">
+        <source>Merci d'utiliser le formulaire ci-dessous pour me contacter. Je vous répondrai dès que possible.</source>
+        <target>Merci d'utiliser le formulaire ci-dessous pour me contacter. Je vous répondrai dès que possible.</target>
       </trans-unit>
     </body>
   </file>

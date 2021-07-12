@@ -32,10 +32,10 @@
             </tr>
             <tr>
                 <th>{% trans %}Compte vérifié{% endtrans %}</th>
-                <td>{{ user.isVerified ? 'Oui' : 'Non' }}</td>
+                <td>{{ user.isVerified ? 'Oui'|trans : 'Non'|trans }}</td>
             </tr>
             <tr>
-                <th>{% trans %}Nom<{% endtrans %}/th>
+                <th>{% trans %}Nom{% endtrans %}</th>
                 <td>{{ user.nom }}</td>
             </tr>
             <tr>

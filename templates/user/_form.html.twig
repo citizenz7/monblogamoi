@@ -8,10 +8,10 @@
 
     {% if app.request.get('_route') == 'user_edit' %}
         {% if user.avatar is not empty %}
-            Avatar actuel :<br>
+        {% trans %}Avatar actuel :{% endtrans %}<br>
             <img src="{{ asset('uploads/images/users/' ~ user.avatar) }}" alt="{{ user.prenom }} {{ user.nom }}" class="img-fluid mb-3">
             <p>
-                <a href="{{ path('user_delete_avatar', {'id': user.id}) }}" class="btn btn-sm btn-danger">Supprimer l'avatar</a>
+                <a href="{{ path('user_delete_avatar', {'id': user.id}) }}" class="btn btn-sm btn-danger">{% trans %}Supprimer l'avatar{% endtrans %}</a>
             </p>
         {% else %}
             <div class="text-white bg-primary p-2 mb-2 text-center">

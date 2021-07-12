@@ -82,6 +82,19 @@ class ArticleRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findAllArtCatTagUne(): array
+    {
+        return $this->createQueryBuilder('find')
+            ->leftJoin('find.article', 'fa')
+            ->addSelect('fa')
+            ->leftJoin('find.tag', 'ft')
+            ->addSelect('ft')
+            ->orderBy('fa.id', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Article[] Returns an array of Article objects
     //  */
