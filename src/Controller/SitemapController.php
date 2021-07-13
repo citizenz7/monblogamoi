@@ -12,6 +12,8 @@ class SitemapController extends AbstractController
 {
     /**
      * @Route("/sitemap.xml", name="sitemap", defaults={"_format"="xml"})
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index(Request $request)
     {

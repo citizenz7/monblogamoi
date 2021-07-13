@@ -16,6 +16,10 @@ class UserController extends AbstractController
 {
     /**
      * @Route("/admin/user", name="user_index", methods={"GET"})
+     * @param \App\Repository\UserRepository $userRepository
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Knp\Component\Pager\PaginatorInterface $paginator
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index(UserRepository $userRepository, Request $request, PaginatorInterface $paginator): Response
     {
@@ -36,6 +40,9 @@ class UserController extends AbstractController
 
     /**
      * @Route("/admin/user/new", name="user_new", methods={"GET","POST"})
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function new(Request $request, TranslatorInterface $translator): Response
     {
@@ -79,6 +86,8 @@ class UserController extends AbstractController
 
     /**
      * @Route("/user/{id}", name="user_show", methods={"GET"})
+     * @param \App\Entity\User $user
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function show(User $user): Response
     {
@@ -89,6 +98,10 @@ class UserController extends AbstractController
 
     /**
      * @Route("/user/{id}/edit", name="user_edit", methods={"GET","POST"})
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \App\Entity\User $user
+     * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function edit(Request $request, User $user, TranslatorInterface $translator): Response
     {
@@ -129,6 +142,10 @@ class UserController extends AbstractController
 
     /**
      * @Route("/admin/user/{id}/delavatar", name="user_delete_avatar", methods={"GET"})
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \App\Entity\User $user
+     * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function deleteAvatar(Request $request, User $user, TranslatorInterface $translator): Response
     {
@@ -142,7 +159,7 @@ class UserController extends AbstractController
         }
 
         // Set avatar to "nothing" in DB
-        $user->setAvatar('');       
+        $user->setAvatar('');
         $this->getDoctrine()->getManager()->flush();
 
         // Redirect to user edit page with translated message
@@ -154,6 +171,10 @@ class UserController extends AbstractController
 
     /**
      * @Route("/user/{id}", name="user_delete", methods={"POST"})
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \App\Entity\User $user
+     * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function delete(Request $request, User $user, TranslatorInterface $translator): Response
     {

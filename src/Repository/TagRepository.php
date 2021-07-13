@@ -19,6 +19,9 @@ class TagRepository extends ServiceEntityRepository
         parent::__construct($registry, Tag::class);
     }
 
+    /**
+     * @return array
+     */
     public function footerTags(): array
     {
         return $this->createQueryBuilder('cat')

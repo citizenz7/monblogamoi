@@ -18,6 +18,8 @@ class TagController extends AbstractController
 {
     /**
      * @Route("/tag", name="tag_index", methods={"GET"})
+     * @param \App\Repository\TagRepository $tagRepository
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index(TagRepository $tagRepository): Response
     {
@@ -28,6 +30,10 @@ class TagController extends AbstractController
 
     /**
      * @Route("/admin/tag", name="tag_admin_index", methods={"GET"})
+     * @param \App\Repository\TagRepository $tagRepository
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Knp\Component\Pager\PaginatorInterface $paginator
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAdmin(TagRepository $tagRepository, Request $request, PaginatorInterface $paginator): Response
     {
@@ -48,6 +54,9 @@ class TagController extends AbstractController
 
     /**
      * @Route("/admin/tag/new", name="tag_new", methods={"GET","POST"})
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function new(Request $request, TranslatorInterface $translator): Response
     {
@@ -74,8 +83,11 @@ class TagController extends AbstractController
 
     /**
      * @Route("/admin/tag/new/ajax/{label}", name="tag_new_ajax", methods={"POST"})
+     * @param string $label
+     * @param \Doctrine\ORM\EntityManagerInterface $em
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function newTagAjax(string $label, EntityManagerInterface $em): Response 
+    public function newTagAjax(string $label, EntityManagerInterface $em): Response
     {
         $tag = new Tag();
         $tag->setTitle(trim(strip_tags($label)));
@@ -87,6 +99,8 @@ class TagController extends AbstractController
 
     /**
      * @Route("/tag/{slug}", name="tag_show", methods={"GET"})
+     * @param \App\Entity\Tag $tag
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function show(Tag $tag): Response
     {
@@ -97,6 +111,10 @@ class TagController extends AbstractController
 
     /**
      * @Route("/admin/tag/{slug}/edit", name="tag_edit", methods={"GET","POST"})
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \App\Entity\Tag $tag
+     * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function edit(Request $request, Tag $tag, TranslatorInterface $translator): Response
     {
@@ -120,6 +138,10 @@ class TagController extends AbstractController
 
     /**
      * @Route("/admin/tag/{slug}", name="tag_delete", methods={"POST"})
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \App\Entity\Tag $tag
+     * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function delete(Request $request, Tag $tag, TranslatorInterface $translator): Response
     {

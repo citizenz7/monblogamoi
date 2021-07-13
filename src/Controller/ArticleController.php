@@ -15,6 +15,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+ * Class ArticleController
+ * @package App\Controller
+ */
 class ArticleController extends AbstractController
 {
     /**
@@ -69,6 +73,7 @@ class ArticleController extends AbstractController
     /**
      * @Route("/admin/article/new", name="article_new", methods={"GET","POST"})
      * @param Request $request
+     * @param TranslatorInterface $translator
      * @return Response
      */
     public function new(Request $request, TranslatorInterface $translator): Response
@@ -124,6 +129,9 @@ class ArticleController extends AbstractController
     /**
      * @Route("/article/{slug}", name="article_show", methods={"GET","POST"})
      * @param Article $article
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @param MailerInterface $mailer
      * @return Response
      */
     public function show(Article $article, Request $request, EntityManagerInterface $manager, MailerInterface $mailer): Response
@@ -176,6 +184,7 @@ class ArticleController extends AbstractController
      * @Route("/admin/article/{slug}/edit", name="article_edit", methods={"GET","POST"})
      * @param Request $request
      * @param Article $article
+     * @param TranslatorInterface $translator
      * @return Response
      */
     public function edit(Request $request, Article $article, TranslatorInterface $translator): Response
@@ -227,6 +236,10 @@ class ArticleController extends AbstractController
 
     /**
      * @Route("/admin/article/{slug}/delimage", name="article_delete_image", methods={"GET"})
+     * @param Request $request
+     * @param Article $article
+     * @param TranslatorInterface $translator
+     * @return Response
      */
     public function deleteImage(Request $request, Article $article, TranslatorInterface $translator): Response
     {
@@ -240,7 +253,7 @@ class ArticleController extends AbstractController
         }
 
         // Set image to "nothing" in DB
-        $article->setImage('');       
+        $article->setImage('');
         $this->getDoctrine()->getManager()->flush();
 
         // Redirect to edit page
@@ -254,6 +267,7 @@ class ArticleController extends AbstractController
      * @Route("/admin/article/{slug}", name="article_delete", methods={"POST"})
      * @param Request $request
      * @param Article $article
+     * @param TranslatorInterface $translator
      * @return Response
      */
     public function delete(Request $request, Article $article, TranslatorInterface $translator): Response

@@ -19,6 +19,9 @@ class CategoryRepository extends ServiceEntityRepository
         parent::__construct($registry, Category::class);
     }
 
+    /**
+     * @return array
+     */
     public function sidebarCategories(): array
     {
         return $this->createQueryBuilder('cat')
@@ -31,6 +34,9 @@ class CategoryRepository extends ServiceEntityRepository
         ;
     }
 
+    /**
+     * @return array
+     */
     public function sidebarCategoriesAll(): array
     {
         $entityManager = $this->getEntityManager();
@@ -44,7 +50,7 @@ class CategoryRepository extends ServiceEntityRepository
         // returns an array of Product objects
         return $query->getResult();
     }
-   
+
     // /**
     //  * @return Category[] Returns an array of Category objects
     //  */

@@ -4,12 +4,12 @@ namespace App\Controller;
 
 use App\Repository\ArticleRepository;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
- 
+
 class SearchController extends AbstractController
 {
     /**
@@ -22,7 +22,10 @@ class SearchController extends AbstractController
         ]);
     }
 
-    public function searchBar()
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function searchBar(): Response
     {
         $form = $this->createFormBuilder()
             ->setAction($this->generateUrl('handleSearch'))
@@ -40,12 +43,14 @@ class SearchController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-    
+
     /**
      * @Route("/handleSearch", name="handleSearch")
      * @param Request $request
+     * @param \App\Repository\ArticleRepository $repo
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function handleSearch(Request $request, ArticleRepository $repo)
+    public function handleSearch(Request $request, ArticleRepository $repo): Response
     {
         $query = $request->request->get('form')['query'];
 

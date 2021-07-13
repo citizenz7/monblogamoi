@@ -20,6 +20,10 @@ class ArticleRepository extends ServiceEntityRepository
     }
 
     // Find/search articles by title
+    /**
+     * @param string $query
+     * @return int|mixed|string
+     */
     public function findArticlesByName(string $query)
     {
         $qb = $this->createQueryBuilder('p');
@@ -41,6 +45,9 @@ class ArticleRepository extends ServiceEntityRepository
     }
 
     // 5 last articles
+    /**
+     * @return array
+     */
     public function lastArticles(): array
     {
         return $this->createQueryBuilder('a')
@@ -73,6 +80,9 @@ class ArticleRepository extends ServiceEntityRepository
         ;
     }
 
+    /**
+     * @return array
+     */
     public function totalViews(): array
     {
         return $this->createQueryBuilder('v')
@@ -82,6 +92,9 @@ class ArticleRepository extends ServiceEntityRepository
         ;
     }
 
+    /**
+     * @return array
+     */
     public function findAllArtCatTagUne(): array
     {
         return $this->createQueryBuilder('find')

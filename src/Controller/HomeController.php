@@ -14,6 +14,8 @@ class HomeController extends AbstractController
 {
     /**
      * @Route("/", name="home")
+     * @param Request $request
+     * @return Response
      */
     public function index(Request $request): Response
     {
@@ -22,9 +24,9 @@ class HomeController extends AbstractController
         $articles = $this->getDoctrine()->getRepository(Article::class)->findBy([],['created_at' => 'desc'], 4, 1);
 
         $categories = $this->getDoctrine()->getRepository(Category::class)->findBy([],['title' => 'desc']);
-        
+
         $tags = $this->getDoctrine()->getRepository(Tag::class)->findBy([],['title' => 'desc']);
-        
+
         return $this->render('home/index.html.twig', [
             'articles' => $articles,
             'articleUne' => $articleUne,
@@ -37,7 +39,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/apropos", name="apropos")
      */
-    public function apropos()
+    public function apropos(): Response
     {
         return $this->render('home/apropos.html.twig', [
             'current_menu' => 'A propos',
@@ -47,7 +49,7 @@ class HomeController extends AbstractController
     /**
      * @Route("cgu", name="cgu")
      */
-    public function cgu()
+    public function cgu(): Response
     {
         return $this->render('home/cgu.html.twig', [
             'current_menu' => 'Cgu',

@@ -11,6 +11,9 @@ class MainController extends AbstractController
 {
     /**
      * @Route("/change-locale/{locale}", name="change_locale")
+     * @param $locale
+     * @param Request $request
+     * @return Response
      */
     public function changeLocale($locale, Request $request): Response
     {

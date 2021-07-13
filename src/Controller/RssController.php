@@ -12,10 +12,8 @@ class RssController extends AbstractController
 {
     /**
      * @Route("/rss", name="rss_feed")
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function rssAction()
+    public function rssAction(): Response
     {
         // Ftech 5 last articles order by date
         $article = $this->getDoctrine()->getRepository(Article::class)->findBy([],['created_at' => 'DESC'], 5);

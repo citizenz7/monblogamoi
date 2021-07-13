@@ -19,6 +19,9 @@ class CommentRepository extends ServiceEntityRepository
         parent::__construct($registry, Comment::class);
     }
 
+    /**
+     * @return array
+     */
     public function lastComments(): array
     {
         return $this->createQueryBuilder('c')
