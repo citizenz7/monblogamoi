@@ -27,10 +27,10 @@ Entièrement basé sur Bootsrap 5 (+ CSS/JS)
 ### Traduction
 * Multilingual
 * TransalatorInterface : FR, EN
-Vos pouvez ajouter ou mettre à jour les fichiers de langues avec (par exemple pour le français): `symfony console translation:update --force fr`
+Vous pouvez ajouter ou mettre à jour les fichiers de langues avec (par exemple pour le français): `symfony console translation:update --force fr`
 Votre fichier se trouve dans /translations. Vous devez terminer la traduction à la main.
 Utilisez la meme commande pour mettre à jour le fichier si vous avez ajouté/modifié la traduction.
-Si vous ajoutez une nouvelle langue, n'oubliez pas de mettre à jour config/services.yaml en ajoutant les 2 première lettre de la langue à `app.locales` comme ceci (exemple d'ajout de l'espagnol) : `app.locales: [fr, en, es]`
+Si vous ajoutez une nouvelle langue, n'oubliez pas de mettre à jour config/services.yaml en ajoutant les 2 premières lettres de la langue à `app.locales` comme ceci (exemple d'ajout de l'espagnol) : `app.locales: [fr, en, es]`
 ### Entités
 * Article
 * Comment
@@ -72,11 +72,11 @@ Si vous ajoutez une nouvelle langue, n'oubliez pas de mettre à jour config/serv
 * Installez CKEditor : `symfony console ckeditor:install`
 * Installez CKEditor assets : `symfony console assets:install public`
 * Videz le cache : `symfony console cache:clear`
-* Créez un premier compte (/register) puis attribuez lui un role admin ["ROLE_ADMIN"] directement depuis PHPMyadmin
+* Créez un premier compte (/register) puis attribuez lui un role admin ["ROLE_ADMIN"] directement depuis PHPMyAdmin
 * Connectez vous avec ce nouveau compte (/login) puis rendez-vous sur le panneau d'administration (/admin)
 * Créez des catégories (/admin/category/new)
 * Créez un article. Les tags seront automatiquement créés quand vous les écrirez pour la première fois en faisant un espace après chaque tag (SELECT2 JQuery plugin). Vous les retrouverez dans la liste déroulante.
-* Modifiez/adaptez la page `A propos`
+* Modifiez/adaptez les pages `A propos`, `CGU`
 
 # TODO
 * Diminuer le nombre de queries SQL
