@@ -1,20 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Comment index{% endblock %}
+{% block title %}{{ site_name }} - {% trans %}Liste des commentaires{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h2>Liste des commentaires</h2>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>{% trans %}Liste des commentaires{% endtrans %}</h2>
+
+    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('admin') }}">{% trans %}Admin index{% endtrans %}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{% trans %}Liste des commentaires{% endtrans %}</li>
+        </ol>
+    </nav>
+</div>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Message</th>
-                <th>Actif</th>
-                <th>Pseudo</th>
-                <th>RGPD</th>
-                <th width="14%">Posté le</th>
-                <th width="11%"></th>
+                <th>{% trans %}Message{% endtrans %}</th>
+                <th>{% trans %}Actif{% endtrans %}</th>
+                <th>{% trans %}Pseudo{% endtrans %}</th>
+                <th>{% trans %}RGPD{% endtrans %}</th>
+                <th width="14%">{% trans %}Posté le{% endtrans %}</th>
+                <th width="7%"></th>
                 <th width="4%"></th>
             </tr>
         </thead>
@@ -23,13 +32,12 @@
             <tr>
                 <td>{{ comment.id }}</td>
                 <td>{{ comment.content }}</td>
-                <td>{{ comment.active ? 'Oui' : 'Non' }}</td>
+                <td>{{ comment.active ? 'Oui'|trans : 'Non'|trans }}</td>
                 <td>{{ comment.nickname }}</td>
-                <td>{{ comment.rgpd ? 'Oui' : 'Non' }}</td>
+                <td>{{ comment.rgpd ? 'Oui'|trans : 'Non'|trans }}</td>
                 <td>{{ comment.createdAt|format_datetime('medium', 'short') }}</td>
                 <td>
-                    <a class="btn btn-sm btn-info" href="{{ path('comment_show', {'id': comment.id}) }}">voir</a>
-                    <a class="btn btn-sm btn-warning" href="{{ path('comment_edit', {'id': comment.id}) }}">modifier</a>
+                    <a class="btn btn-sm btn-warning" href="{{ path('comment_edit', {'id': comment.id}) }}">{% trans %}modifier{% endtrans %}</a>
                 </td>
                 <td>
                     {{ include('comment/_delete_form.html.twig') }}
@@ -37,7 +45,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">Il n'y a aucun enregistrement.</td>
+                <td colspan="7">{% trans %}Il n'y a aucun enregistrement.{% endtrans %}</td>
             </tr>
         {% endfor %}
         </tbody>

@@ -655,6 +655,34 @@
         <source>Merci d'utiliser le formulaire ci-dessous pour me contacter. Je vous répondrai dès que possible.</source>
         <target>Merci d'utiliser le formulaire ci-dessous pour me contacter. Je vous répondrai dès que possible.</target>
       </trans-unit>
+      <trans-unit id="L3dmip3" resname="Message">
+        <source>Message</source>
+        <target>Message</target>
+      </trans-unit>
+      <trans-unit id="rSYoerZ" resname="Actif">
+        <source>Actif</source>
+        <target>Actif</target>
+      </trans-unit>
+      <trans-unit id="ibBzXJC" resname="RGPD">
+        <source>RGPD</source>
+        <target>RGPD</target>
+      </trans-unit>
+      <trans-unit id="DVXDi5N" resname="voir">
+        <source>voir</source>
+        <target>voir</target>
+      </trans-unit>
+      <trans-unit id="xwYQJiS" resname="modifier">
+        <source>modifier</source>
+        <target>modifier</target>
+      </trans-unit>
+      <trans-unit id="zfukYDA" resname="Modifier le commentaire">
+        <source>Modifier le commentaire</source>
+        <target>Modifier le commentaire</target>
+      </trans-unit>
+      <trans-unit id="Q7mXro6" resname="Retour à la liste des commentaires">
+        <source>Retour à la liste des commentaires</source>
+        <target>Retour à la liste des commentaires</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

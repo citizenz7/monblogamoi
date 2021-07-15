@@ -1,6 +1,6 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
     <button class="btn btn-sm btn-success">{{ button_label|default('Enregistrer') }}</button> 
-    <button class="btn btn-sm btn-secondary">Annuler</button> 
-    <a class="btn btn-sm btn-primary" href="{{ path('comment_index') }}">Retour liste des commentaires</a>
+    <button class="btn btn-sm btn-secondary">{% trans %}Annuler{% endtrans %}</button> 
+    <a class="btn btn-sm btn-primary" href="{{ path('comment_index') }}">{% trans %}Retour à la liste des commentaires{% endtrans %}</a>
 {{ form_end(form) }}

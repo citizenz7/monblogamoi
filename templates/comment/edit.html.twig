@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Comment{% endblock %}
+{% block title %}{{ site_name }} - {% trans %}Modifier le commentaire{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>Edit Comment</h1>
+    <h2>{% trans %}Modifier le commentaire{% endtrans %}</h2>
 
-    {{ include('comment/_form.html.twig', {'button_label': 'Modifier'}) }}
+    {{ include('comment/_form.html.twig', {'button_label': 'Modifier'|trans}) }}
 
 {% endblock %}

@@ -635,6 +635,34 @@
         <source>Non</source>
         <target>No</target>
       </trans-unit>
+      <trans-unit id="L3dmip3" resname="Message">
+        <source>Message</source>
+        <target>Message</target>
+      </trans-unit>
+      <trans-unit id="rSYoerZ" resname="Actif">
+        <source>Actif</source>
+        <target>Active</target>
+      </trans-unit>
+      <trans-unit id="ibBzXJC" resname="RGPD">
+        <source>RGPD</source>
+        <target>Terms</target>
+      </trans-unit>
+      <trans-unit id="DVXDi5N" resname="voir">
+        <source>voir</source>
+        <target>see</target>
+      </trans-unit>
+      <trans-unit id="xwYQJiS" resname="modifier">
+        <source>modifier</source>
+        <target>edit</target>
+      </trans-unit>
+      <trans-unit id="zfukYDA" resname="Modifier le commentaire">
+        <source>Modifier le commentaire</source>
+        <target>Edit comment</target>
+      </trans-unit>
+      <trans-unit id="Q7mXro6" resname="Retour à la liste des commentaires">
+        <source>Retour à la liste des commentaires</source>
+        <target>Back to comments index</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CommentController extends AbstractController
 {
     /**
-     * @Route("/comment", name="comment_index", methods={"GET"})
+     * @Route("/admin/comment", name="comment_index", methods={"GET"})
      */
     public function index(CommentRepository $commentRepository, Request $request, PaginatorInterface $paginator): Response
     {
@@ -36,40 +36,7 @@ class CommentController extends AbstractController
     }
 
     /**
-     * @Route("/comment/new", name="comment_new", methods={"GET","POST"})
-     */
-    public function new(Request $request): Response
-    {
-        $comment = new Comment();
-        $form = $this->createForm(Comment1Type::class, $comment);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($comment);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('comment_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('comment/new.html.twig', [
-            'comment' => $comment,
-            'form' => $form,
-        ]);
-    }
-
-    /**
-     * @Route("/comment/{id}", name="comment_show", methods={"GET"})
-     */
-    public function show(Comment $comment): Response
-    {
-        return $this->render('comment/show.html.twig', [
-            'comment' => $comment,
-        ]);
-    }
-
-    /**
-     * @Route("/comment/{id}/edit", name="comment_edit", methods={"GET","POST"})
+     * @Route("/admin/comment/{id}/edit", name="comment_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Comment $comment): Response
     {
@@ -89,7 +56,7 @@ class CommentController extends AbstractController
     }
 
     /**
-     * @Route("/comment/{id}", name="comment_delete", methods={"POST"})
+     * @Route("/admin/comment/{id}", name="comment_delete", methods={"POST"})
      */
     public function delete(Request $request, Comment $comment): Response
     {
