@@ -68,49 +68,88 @@
     <div class="col-9">
         <h3 class="border-bottom">{% trans %}Liste des commentaires{% endtrans %}
             {% if article.comments|length == 0 %}
-            <span class="fs-6">({% trans %}Il n'y a aucun commentaire{% endtrans %})</span>
+                <span class="fs-6">({% trans %}Il n'y a aucun commentaire{% endtrans %})</span>
             {% else %}
-            ({{ article.comments|length }})
+                ({{ article.comments|length }})
             {% endif %}
         </h3>
 
         <!-- Comments -->
         {% for comment in article.comments %}
 
-        {% if comment.parent == null %}
-        <div class="px-3 pt-3">
-            <h5>
-                {{ comment.nickname }}
-                <a href="#reply-comment" data-reply data-id={{ comment.id }} class="reply text-decoration-none">
-                    <i class="fas fa-reply"></i> {% trans %}Répondre{% endtrans %}
-                </a>
-            </h5>
-            <time datetime="{{ comment.createdAt|format_datetime('medium', 'short') }}">
-                {{ comment.createdAt|format_datetime('medium', 'short') }}
-            </time>
-            <p>
-                {{ comment.content|raw }}
-            </p>
-        </div>
+            {% if comment.parent == null %}
 
-        {# show reply #}
-        {% for reply in comment.replies %}
-        <div class="px-3 pt-3 comment-reply">
-            <h5>
-                {{ reply.nickname }}
-            </h5>
-            <div>
-                <time datetime="{{ reply.createdAt|format_datetime('medium', 'short') }}">
-                    {{ reply.createdAt|format_datetime('medium', 'short') }}
-                </time>
-            </div>
-            <p>
-                {{ reply.content|raw }}
-            </p>
-        </div>
-        {% endfor %}
+                {% if comment.active == true %}
+                <div class="px-3 pt-3">
+                    <h5>
+                        {{ comment.nickname }}
+                        <a href="#reply-comment" data-reply data-id={{ comment.id }} class="reply text-decoration-none">
+                            <i class="fas fa-reply"></i> {% trans %}Répondre{% endtrans %}
+                        </a>
+                    </h5>
+                    <time datetime="{{ comment.createdAt|format_datetime('medium', 'short') }}">
+                        {{ comment.createdAt|format_datetime('medium', 'short') }}
+                    </time>
+                    <p>
+                        {{ comment.content|raw }}
+                    </p>
+                    <p>
+                        {% if app.user %}
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <a class="btn btn-sm btn-warning" href="{{ path('comment_edit', {'id': comment.id}) }}">modifier</a>
+                                        </td>
+                                        <td>
+                                            {{ include('comment/_delete_form.html.twig') }}
+                                        </td>
+                                    </tr>
+                                </table>
+                            {% endif %}
+                        {% endif %}
+                    </p>
+                </div>
+                {% endif %}
 
-        {% endif %}
+                {# show reply #}
+                {% for reply in comment.replies %}
+
+                    {% if reply.active == true %}
+                    <div class="px-3 pt-3 comment-reply">
+                        <h5>
+                            {{ reply.nickname }}
+                        </h5>
+                        <div>
+                            <time datetime="{{ reply.createdAt|format_datetime('medium', 'short') }}">
+                                {{ reply.createdAt|format_datetime('medium', 'short') }}
+                            </time>
+                        </div>
+                        <p>
+                            {{ reply.content|raw }}
+                        </p>
+                        <p>
+                            {% if app.user %}
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <!-- Pas bon - mauvais ID de comment -->
+                                                <a class="btn btn-sm btn-warning" href="{{ path('comment_edit', {'id': reply.id}) }}">modifier</a>
+                                            </td>
+                                            <td>
+                                                {{ include('comment/_delete_form.html.twig') }}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                {% endif %}
+                            {% endif %}
+                        </p>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+
+            {% endif %}
 
         {% endfor %}
 
